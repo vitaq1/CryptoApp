@@ -1,7 +1,9 @@
+import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/AccountView.dart';
 import 'package:crypto_app/presentation/trading/TradingView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -33,22 +35,29 @@ class _MainViewState extends State<MainView> {
         child: _widgets.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        backgroundColor: Constant.kNavColor,
+        selectedItemColor: Constant.kPurpleColor,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        //iconSize: ,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: SvgPicture.asset("assets/icons/account.svg"),
+            activeIcon: SvgPicture.asset("assets/icons/account.svg",color: Constant.kPurpleColor,),
+            label: ""
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+              icon: SvgPicture.asset("assets/icons/trading.svg"),
+              activeIcon: SvgPicture.asset("assets/icons/trading.svg",color: Constant.kPurpleColor,),
+              label: ""
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+              icon: SvgPicture.asset("assets/icons/settings.svg"),
+              activeIcon: SvgPicture.asset("assets/icons/settings.svg",color: Constant.kPurpleColor,),
+              label: ""
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
     );
