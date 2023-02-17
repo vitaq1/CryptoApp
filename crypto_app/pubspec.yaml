@@ -28,6 +28,11 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  chopper: ^6.1.0
+  flutter_bloc: ^8.1.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  charts_painter: ^3.1.1
   flutter_svg: ^2.0.1
   get: ^4.6.5
   http: ^0.13.5
