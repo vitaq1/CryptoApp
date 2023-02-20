@@ -12,7 +12,9 @@ class CryptoRepositoryImpl implements CryptoRepository{
   @override
   Future<List<Currency>> getCurrencies() async {
     var items = await api.fetchCurrencies();
-    return items.map((item) => item.toCurrency()).toList();
+    print(items.bodyString);
+    //return items.body!.map((item) => item.toCurrency()).toList();
+    return items.body!.data.map((e) => e.toCurrency()).toList();
   }
 
 }

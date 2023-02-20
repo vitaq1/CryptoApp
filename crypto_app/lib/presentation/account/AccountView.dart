@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:crypto_app/domain/model/ActiveHolding.dart';
 import 'package:crypto_app/domain/model/Currency.dart';
+import 'package:crypto_app/domain/use_case/GetAllCurrencies.dart';
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/currency_card.dart';
 import 'package:crypto_app/presentation/main/MainController.dart';
@@ -64,7 +65,7 @@ class AccountView extends StatelessWidget {
     );
   }
 
-  Stack buildBody(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     return Stack(children: [
       Column(
         children: [
@@ -148,7 +149,9 @@ class AccountView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        loadData();
+                      },
                       child: Text("Deposit"),
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(160, 45),
@@ -210,5 +213,10 @@ class AccountView extends StatelessWidget {
         ),
       )
     ]);
+  }
+
+  void loadData() {
+    GetAllCurrencies getAllCurrencies = Get.find();
+    print(getAllCurrencies.call());
   }
 }
