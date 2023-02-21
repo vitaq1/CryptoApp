@@ -1,21 +1,29 @@
+import 'package:crypto_app/data/datasource/remote/dto/CurrencyDto.dart';
+
 class Currency {
   Currency({
     this.code,
     this.name,
     this.color,
-    this.sortIndex,
-    this.exponent,
-    this.type,
-    this.addressRegex,
-    this.assetId,
   });
 
   String? code;
   String? name;
   String? color;
-  int? sortIndex;
-  int? exponent;
-  String? type;
-  String? addressRegex;
-  String? assetId;
+
+  double? exchangeRate;
+  double? amount = 0.0;
+
+
+  Currency.fromCurrencyDto(CurrencyDto currencyDto){
+    code =  currencyDto.code;
+    name =  currencyDto.name;
+    color =  currencyDto.color;
+  }
+
+  /*Currency.fromCurrencyEntity(CurrencyDto currencyDto){
+    code =  currencyDto.code;
+    name =  currencyDto.name;
+    color =  currencyDto.color;
+  }*/
 }

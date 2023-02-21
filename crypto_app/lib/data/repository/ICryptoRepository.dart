@@ -1,6 +1,6 @@
 import '../../domain/model/Currency.dart';
 
-abstract class CryptoRepository{
+abstract class ICryptoRepository{
 
   Future<List<Currency>> getCurrencies();
 

@@ -17,7 +17,7 @@ class _$CryptoApi extends CryptoApi {
   final definitionType = CryptoApi;
 
   @override
-  Future<Response<CurrencyList>> fetchCurrencies() {
+  Future<Response<List<CurrencyDto>>> fetchCurrencies() {
     final Uri $url = Uri.parse('https://api.coinbase.com/v2/currencies/crypto');
     final Map<String, String> $headers = {
       'Content-Type': 'application/json',
@@ -28,6 +28,22 @@ class _$CryptoApi extends CryptoApi {
       client.baseUrl,
       headers: $headers,
     );
-    return client.send<CurrencyList, CurrencyList>($request);
+    return client.send<List<CurrencyDto>, CurrencyDto>($request);
+  }
+
+  @override
+  Future<Response<ExchangeRateDto>> fetchExchangeRate(String currencyPair) {
+    final Uri $url =
+        Uri.parse('https://api.coinbase.com/v2/prices/${currencyPair}/spot');
+    final Map<String, String> $headers = {
+      'Content-Type': 'application/json',
+    };
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      headers: $headers,
+    );
+    return client.send<ExchangeRateDto, ExchangeRateDto>($request);
   }
 }

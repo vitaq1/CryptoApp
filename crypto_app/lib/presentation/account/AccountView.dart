@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:crypto_app/data/datasource/remote/CryptoApi.dart';
 import 'package:crypto_app/domain/model/ActiveHolding.dart';
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/domain/use_case/GetAllCurrencies.dart';
+import 'package:crypto_app/domain/use_case/GetExchangeRate.dart';
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/currency_card.dart';
 import 'package:crypto_app/presentation/main/MainController.dart';
@@ -16,22 +18,22 @@ class AccountView extends StatelessWidget {
 
   var testHoldings = [
     ActiveHolding(
-        Currency(code: "BTC", name: "Bitcoin", color: "#111", assetId: ""),
+        Currency(code: "BTC", name: "Bitcoin", color: "#111"),
         50,
         20043,
         "assets/icons/btc.svg"),
     ActiveHolding(
-        Currency(code: "ETH", name: "Ethereum", color: "#111", assetId: ""),
+        Currency(code: "ETH", name: "Ethereum", color: "#111"),
         10,
         7348,
         "assets/icons/eth.svg"),
     ActiveHolding(
-        Currency(code: "LTC", name: "Litecoin", color: "#111", assetId: ""),
+        Currency(code: "LTC", name: "Litecoin", color: "#111"),
         14,
         203,
         "assets/icons/ltc.svg"),
     ActiveHolding(
-        Currency(code: "XRP", name: "Ripple", color: "#111", assetId: ""),
+        Currency(code: "XRP", name: "Ripple", color: "#111"),
         5,
         923,
         "assets/icons/xrp.svg"),
@@ -71,7 +73,10 @@ class AccountView extends StatelessWidget {
         children: [
           SvgPicture.asset(
             "assets/images/curves.svg",
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
           )
         ],
       ),
@@ -94,6 +99,7 @@ class AccountView extends StatelessWidget {
               child: Container(
                 width: 370,
                 height: 120,
+
                 decoration: BoxDecoration(
                     color: Constant.kCashColor,
                     borderRadius: BorderRadius.circular(16)),
@@ -201,7 +207,7 @@ class AccountView extends StatelessWidget {
             ),
             Expanded(
                 child: ListView.builder(
-                  shrinkWrap: false,
+                    shrinkWrap: false,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: testHoldings.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -215,8 +221,12 @@ class AccountView extends StatelessWidget {
     ]);
   }
 
-  void loadData() {
+  loadData() async {
     GetAllCurrencies getAllCurrencies = Get.find();
-    print(getAllCurrencies.call());
+    GetExchangeRate getExchangeRate = Get.find();
+    print((await getExchangeRate.call("BTC")).amount);
+    /*(await getAllCurrencies.call()).forEach((element) {
+      //print(element.code);
+    });*/
   }
 }
