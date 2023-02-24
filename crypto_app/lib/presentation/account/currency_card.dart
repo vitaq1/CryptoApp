@@ -224,14 +224,15 @@ class CurrencyCard extends StatelessWidget {
                                 "\$${double.parse((activeHolding!.amount * activeHolding!.exchangeRates.last).toStringAsFixed(2))}",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 15,
+                                    overflow: TextOverflow.visible,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
                                 "${double.parse((activeHolding!.amount).toStringAsFixed(2))} ${activeHolding!.code}",
                                 style: TextStyle(
                                     color: Constant.kLightGrayColor,
+                                    overflow: TextOverflow.visible,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700),
                               )
