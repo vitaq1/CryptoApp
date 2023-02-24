@@ -1,4 +1,5 @@
 import 'package:crypto_app/data/datasource/remote/dto/ExchangeRateDto.dart';
+import 'package:crypto_app/domain/model/ExchangeRate.dart';
 
 import '../repository/RemoteRepository.dart';
 
@@ -8,7 +9,7 @@ class GetExchangeRate {
   final RemoteRepository repository;
 
 
-  Future<ExchangeRateDto> call(String cryptoCode){
+  Future<ExchangeRate> call(String cryptoCode){
 
     return repository.getExchangeRate(cryptoCode);
   }

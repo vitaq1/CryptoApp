@@ -1,4 +1,5 @@
 import 'package:crypto_app/data/datasource/remote/CryptoApi.dart';
+import 'package:crypto_app/domain/model/ExchangeRate.dart';
 
 import '../../data/datasource/remote/dto/ExchangeRateDto.dart';
 import '../../data/repository/ICryptoRepository.dart';
@@ -17,8 +18,8 @@ class RemoteRepository implements ICryptoRepository{
     //return items.body!.data?.map((e) => e.toCurrency()).toList();
   }
 
-  Future<ExchangeRateDto> getExchangeRate(String cryptoCode) async{
+  Future<ExchangeRate> getExchangeRate(String cryptoCode) async{
     var exchangeRate = await api.fetchExchangeRate("$cryptoCode-USD");
-    return exchangeRate.body!;
+    return ExchangeRate.fromExchangeRateDto(exchangeRate.body!);
   }
 }

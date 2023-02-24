@@ -1,13 +1,13 @@
 import 'package:crypto_app/domain/model/Currency.dart';
-import 'package:crypto_app/domain/repository/RemoteRepository.dart';
+import 'package:crypto_app/domain/repository/LocalRepository.dart';
 
 class GetAllCurrencies {
 
   GetAllCurrencies({required this.repository});
-  final RemoteRepository repository;
+  final LocalRepository repository;
 
 
-  Future<List<Currency>> call(){
+  List<Currency> call(){
 
     return repository.getCurrencies();
   }

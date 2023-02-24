@@ -1,43 +1,26 @@
 import 'dart:math';
 
 import 'package:crypto_app/data/datasource/remote/CryptoApi.dart';
-import 'package:crypto_app/domain/model/ActiveHolding.dart';
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/domain/use_case/GetAllCurrencies.dart';
 import 'package:crypto_app/domain/use_case/GetExchangeRate.dart';
+import 'package:crypto_app/domain/use_case/SaveCurrenciesLocally.dart';
+import 'package:crypto_app/domain/use_case/UpdateExchangeRates.dart';
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/currency_card.dart';
 import 'package:crypto_app/presentation/main/MainController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+
+import 'bloc/account_bloc.dart';
 
 class AccountView extends StatelessWidget {
   final MainController c = Get.find();
 
-  var testHoldings = [
-    ActiveHolding(
-        Currency(code: "BTC", name: "Bitcoin", color: "#111"),
-        50,
-        20043,
-        "assets/icons/btc.svg"),
-    ActiveHolding(
-        Currency(code: "ETH", name: "Ethereum", color: "#111"),
-        10,
-        7348,
-        "assets/icons/eth.svg"),
-    ActiveHolding(
-        Currency(code: "LTC", name: "Litecoin", color: "#111"),
-        14,
-        203,
-        "assets/icons/ltc.svg"),
-    ActiveHolding(
-        Currency(code: "XRP", name: "Ripple", color: "#111"),
-        5,
-        923,
-        "assets/icons/xrp.svg"),
-  ];
 
   @override
   Widget build(context) {
@@ -205,16 +188,50 @@ class AccountView extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-                child: ListView.builder(
-                    shrinkWrap: false,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: testHoldings.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CurrencyCard(
-                          activeHolding: testHoldings[index],
-                          calculatedHeight: 330 / 4);
-                    }))
+            BlocProvider(
+              create: (context) => AccountBloc(),
+              child: BlocConsumer<AccountBloc, AccountState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                },
+                builder: (context, state) {
+                  if (state is AccountInitial) {
+                    return Expanded(
+                        child: ListView.separated(
+                            shrinkWrap: false,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: 10,
+                            separatorBuilder: (BuildContext context, int index) {
+                              return SizedBox(height: 15);
+                            },
+                            itemBuilder: (BuildContext context, int index) {
+                              return CurrencyCard(
+                                  activeHolding: null,
+                                  isLoading: true,)
+                              ;
+                            }));
+                  }
+                  else if (state is ShowDataState) {
+                    return Expanded(
+                        child: ListView.separated(
+                            shrinkWrap: false,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: state.holdings.length,
+                            separatorBuilder: (BuildContext context, int index) {
+                              return SizedBox(height: 15);
+                            },
+                            itemBuilder: (BuildContext context, int index) {
+                              return CurrencyCard(
+                                activeHolding: state.holdings[index],
+                                 isLoading: false,);
+                            }));
+                  }
+                  else {
+                    return Container();
+                  }
+                },
+              ),
+            )
           ],
         ),
       )
@@ -222,11 +239,22 @@ class AccountView extends StatelessWidget {
   }
 
   loadData() async {
+    //Hive.deleteFromDisk();
+
+    /*SaveCurrenciesLocally saveCurrenciesLocally = Get.find();
+    saveCurrenciesLocally.call();*/
+
+
+    UpdateExchangeRates updateExchangeRates = Get.find();
+    await updateExchangeRates.call();
     GetAllCurrencies getAllCurrencies = Get.find();
-    GetExchangeRate getExchangeRate = Get.find();
-    print((await getExchangeRate.call("BTC")).amount);
+    getAllCurrencies.call().toList().forEach((element) {
+      print(element.code + " " + element.exchangeRate.toString());
+    });
+
     /*(await getAllCurrencies.call()).forEach((element) {
       //print(element.code);
     });*/
   }
+
 }

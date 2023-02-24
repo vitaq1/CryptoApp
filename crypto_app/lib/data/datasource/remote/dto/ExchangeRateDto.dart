@@ -1,4 +1,6 @@
 
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+
 class ExchangeRateDto {
 
   late String base;
@@ -15,7 +17,7 @@ class ExchangeRateDto {
   ExchangeRateDto.fromJson(dynamic json) {
     base = json['base'];
     currency = json['currency'];
-    amount = json['amount'];
+    amount = double.parse(json['amount']);
   }
 
 

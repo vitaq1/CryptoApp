@@ -9,5 +9,19 @@ class Constant{
   static const kLightGrayColor = Color(0XFF6C757D);
   static const kNavColor = Color(0XFF121212);
   static const kCashColor = Color(0XFFF7DABB);
+  static const kCardColor = Color(0XFF18181C);
 
+
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }

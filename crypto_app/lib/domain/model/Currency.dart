@@ -1,29 +1,56 @@
+import 'package:crypto_app/data/datasource/local/entity/CurrencyEntity.dart';
 import 'package:crypto_app/data/datasource/remote/dto/CurrencyDto.dart';
 
 class Currency {
   Currency({
-    this.code,
-    this.name,
-    this.color,
+    required this.code,
+    required this.name,
+    required this.color,
+    required this.sortIndex,
+  });
+  Currency.fromAll({
+    required this.code,
+    required this.name,
+    required this.color,
+    required this.sortIndex,
+    required exchangeRate,
+    required amount,
   });
 
-  String? code;
-  String? name;
-  String? color;
+  late String code;
+  late String name;
+  late String color;
+  late int sortIndex;
 
-  double? exchangeRate;
-  double? amount = 0.0;
+  double exchangeRate = 0.0;
+  double amount = 0.0;
 
+  dynamic key;
 
-  Currency.fromCurrencyDto(CurrencyDto currencyDto){
-    code =  currencyDto.code;
-    name =  currencyDto.name;
-    color =  currencyDto.color;
+  Currency.fromCurrencyDto(CurrencyDto currencyDto) {
+    code = currencyDto.code;
+    name = currencyDto.name;
+    color = currencyDto.color;
+    sortIndex = currencyDto.sortIndex;
   }
 
-  /*Currency.fromCurrencyEntity(CurrencyDto currencyDto){
-    code =  currencyDto.code;
-    name =  currencyDto.name;
-    color =  currencyDto.color;
-  }*/
+  Currency.fromCurrencyEntity(CurrencyEntity currencyEntity) {
+    code = currencyEntity.code;
+    name = currencyEntity.name;
+    color = currencyEntity.color;
+    sortIndex = currencyEntity.sortIndex;
+    exchangeRate = currencyEntity.exchangeRate;
+    amount = currencyEntity.amount;
+    key = currencyEntity.key;
+  }
+
+  CurrencyEntity toCurrencyEntity() {
+    return CurrencyEntity()
+      ..code = code
+      ..name = name
+      ..color = color
+      ..sortIndex = sortIndex
+      ..exchangeRate = exchangeRate
+      ..amount = amount;
+  }
 }

@@ -5,11 +5,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../data/datasource/local/HiveDB.dart';
+
 class MainView extends StatefulWidget {
   const MainView({super.key});
 
   @override
   State<MainView> createState() => _MainViewState();
+
+
 }
 
 class _MainViewState extends State<MainView> {
@@ -25,6 +29,13 @@ class _MainViewState extends State<MainView> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+
+  @override
+  void dispose() {
+    HiveDB.saveData();
+    super.dispose();
   }
 
   @override
@@ -62,4 +73,6 @@ class _MainViewState extends State<MainView> {
       ),
     );
   }
+
+
 }
