@@ -14,7 +14,7 @@ class SaveCurrenciesLocally {
    call() async{
 
      var currencies = (await remoteRepository.getCurrencies()).where((element) => element.sortIndex < 120).toList();
-     //currencies.forEach((element) {log(element.sortIndex.toString());});
+     currencies.forEach((element) {log(element.sortIndex.toString());});
      localRepository.addCurrencies(currencies);
   }
 

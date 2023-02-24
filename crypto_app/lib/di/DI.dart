@@ -8,7 +8,6 @@ import 'package:crypto_app/domain/use_case/GetAllCurrencies.dart';
 import 'package:crypto_app/domain/use_case/GetExchangeRate.dart';
 import 'package:crypto_app/domain/use_case/SaveCurrenciesLocally.dart';
 import 'package:crypto_app/domain/use_case/UpdateExchangeRates.dart';
-import 'package:crypto_app/presentation/main/MainController.dart';
 import 'package:get/get.dart';
 
 import '../data/datasource/local/HiveDB.dart';
@@ -27,7 +26,6 @@ class DI {
     Get.put(GetExchangeRate(repository: Get.find()));
     Get.put(SaveCurrenciesLocally(remoteRepository: Get.find(), localRepository: Get.find()));
     Get.put(UpdateExchangeRates(remoteRepository: Get.find(), localRepository: Get.find()));
-    Get.put(MainController());
   }
 
 }

@@ -21,4 +21,8 @@ abstract class CryptoApi extends ChopperService {
   Future<Response<ExchangeRateDto>> fetchExchangeRate(
       @Path("currency_pair") String currencyPair);
 
+  @Get(path: Endpoint.EXCHANGE_RATE, headers: {"Content-Type": "application/json"})
+  Future<Response<ExchangeRateDto>> fetchExchangeRateByDate(
+      @Path("currency_pair") String currencyPair, @Query("date") String date);
+
 }

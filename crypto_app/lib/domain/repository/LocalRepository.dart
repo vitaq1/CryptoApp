@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:crypto_app/data/datasource/local/entity/CurrencyEntity.dart';
 import 'package:hive/hive.dart';
 
@@ -23,8 +25,9 @@ class LocalRepository {
     });
   }
 
-  updateExchangeForCurrency(Currency currency, double rate){
-    currency.exchangeRate = rate;
+  updateExchangeRatesForCurrency(Currency currency, List<double> rates){
+    //log("rates count 2: " + rates.length.toString());
+    currency.exchangeRates = rates;
     db.currencyTable.put(currency.key, currency.toCurrencyEntity());
   }
 

@@ -19,7 +19,7 @@ class CurrencyEntity extends HiveObject {
   late int sortIndex;
 
   @HiveField(4)
-  late double exchangeRate;
+  late List<double> exchangeRates;
 
   @HiveField(5)
   double amount = 0.0;

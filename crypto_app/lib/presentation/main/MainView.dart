@@ -33,12 +33,6 @@ class _MainViewState extends State<MainView> {
 
 
   @override
-  void dispose() {
-    HiveDB.saveData();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
 

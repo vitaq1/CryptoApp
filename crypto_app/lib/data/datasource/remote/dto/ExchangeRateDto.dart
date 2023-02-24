@@ -8,6 +8,7 @@ class ExchangeRateDto {
   late double amount;
 
 
+
   ExchangeRateDto({
     required this.base,
     required this.currency,

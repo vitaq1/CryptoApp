@@ -10,25 +10,34 @@ Future<void> main() async {
   //Hive.deleteFromDisk();
   await HiveDB.initialize();
   DI.init();
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'CryptX',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: "Poppins",
+      theme: ThemeData(
+        fontFamily: "Poppins",
         primarySwatch: Colors.blue,
       ),
       home: SplashView(),
     );
   }
 
-
+  @override
+  void dispose() {
+    HiveDB.saveData();
+    super.dispose();
+  }
 }

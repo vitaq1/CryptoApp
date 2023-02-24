@@ -16,14 +16,12 @@ class CurrencyEntityAdapter extends TypeAdapter<CurrencyEntity> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-
-
     return CurrencyEntity()
       ..code = fields[0] as String
       ..name = fields[1] as String
       ..color = fields[2] as String
       ..sortIndex = fields[3] as int
-      ..exchangeRate = fields[4] as double
+      ..exchangeRates = (fields[4] as List).cast<double>()
       ..amount = fields[5] as double;
   }
 
@@ -40,7 +38,7 @@ class CurrencyEntityAdapter extends TypeAdapter<CurrencyEntity> {
       ..writeByte(3)
       ..write(obj.sortIndex)
       ..writeByte(4)
-      ..write(obj.exchangeRate)
+      ..write(obj.exchangeRates)
       ..writeByte(5)
       ..write(obj.amount);
   }

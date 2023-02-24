@@ -7,9 +7,9 @@ class GetAllCurrencies {
   final LocalRepository repository;
 
 
-  List<Currency> call(){
+  Future<List<Currency>> call() async{
 
-    return repository.getCurrencies();
+    return await repository.getCurrencies();
   }
 
 }

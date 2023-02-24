@@ -13,8 +13,8 @@ class Currency {
     required this.name,
     required this.color,
     required this.sortIndex,
-    required exchangeRate,
-    required amount,
+    required this.exchangeRates,
+    required this.amount,
   });
 
   late String code;
@@ -22,7 +22,7 @@ class Currency {
   late String color;
   late int sortIndex;
 
-  double exchangeRate = 0.0;
+  List<double> exchangeRates = List.empty();
   double amount = 0.0;
 
   dynamic key;
@@ -39,7 +39,7 @@ class Currency {
     name = currencyEntity.name;
     color = currencyEntity.color;
     sortIndex = currencyEntity.sortIndex;
-    exchangeRate = currencyEntity.exchangeRate;
+    exchangeRates = currencyEntity.exchangeRates;
     amount = currencyEntity.amount;
     key = currencyEntity.key;
   }
@@ -50,7 +50,7 @@ class Currency {
       ..name = name
       ..color = color
       ..sortIndex = sortIndex
-      ..exchangeRate = exchangeRate
+      ..exchangeRates = exchangeRates
       ..amount = amount;
   }
 }

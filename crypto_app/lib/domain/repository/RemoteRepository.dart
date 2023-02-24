@@ -20,6 +20,10 @@ class RemoteRepository implements ICryptoRepository{
 
   Future<ExchangeRate> getExchangeRate(String cryptoCode) async{
     var exchangeRate = await api.fetchExchangeRate("$cryptoCode-USD");
-    return ExchangeRate.fromExchangeRateDto(exchangeRate.body!);
+    return ExchangeRate.fromExchangeRateDto(exchangeRate.body!, DateTime.now().toString());
+  }
+  Future<ExchangeRate> getExchangeRateByDate(String cryptoCode, String date) async{
+    var exchangeRate = await api.fetchExchangeRateByDate("$cryptoCode-USD", date);
+    return ExchangeRate.fromExchangeRateDto(exchangeRate.body!, date);
   }
 }

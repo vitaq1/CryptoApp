@@ -46,4 +46,25 @@ class _$CryptoApi extends CryptoApi {
     );
     return client.send<ExchangeRateDto, ExchangeRateDto>($request);
   }
+
+  @override
+  Future<Response<ExchangeRateDto>> fetchExchangeRateByDate(
+    String currencyPair,
+    String date,
+  ) {
+    final Uri $url =
+        Uri.parse('https://api.coinbase.com/v2/prices/${currencyPair}/spot');
+    final Map<String, dynamic> $params = <String, dynamic>{'date': date};
+    final Map<String, String> $headers = {
+      'Content-Type': 'application/json',
+    };
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      parameters: $params,
+      headers: $headers,
+    );
+    return client.send<ExchangeRateDto, ExchangeRateDto>($request);
+  }
 }
