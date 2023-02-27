@@ -1,5 +1,3 @@
-
-
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/currency_card.dart';
@@ -46,10 +44,7 @@ class AccountView extends StatelessWidget {
           children: [
             SvgPicture.asset(
               "assets/images/curves.svg",
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
+              width: MediaQuery.of(context).size.width,
             )
           ],
         ),
@@ -74,9 +69,8 @@ class AccountView extends StatelessWidget {
                   height: 150,
                   decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        begin: Alignment.topRight, 
+                        begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
-
                         stops: [
                           0.0,
                           0.4,
@@ -86,7 +80,6 @@ class AccountView extends StatelessWidget {
                           Color(0xFFD592A7),
                           Color(0xFFFDE4BE),
                           Color(0xFFA4C0D3),
-
                         ],
                       ),
                       borderRadius: BorderRadius.circular(16)),
@@ -110,29 +103,30 @@ class AccountView extends StatelessWidget {
                               if (state is AccountInitial) {
                                 return Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                Container(
-                                  width: 120,
-                                  height: 24,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.black,),
-                                ),
-                                Container(
-                                  width: 50,
-                                  height: 16,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Constant.kPurpleColor,),
-                                ),
+                                    Container(
+                                      width: 120,
+                                      height: 24,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 50,
+                                      height: 16,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Constant.kPurpleColor,
+                                      ),
+                                    ),
                                   ],
                                 );
-                              }
-                              else if (state is ShowDataState) {
+                              } else if (state is ShowDataState) {
                                 return Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "\$${calculateBalance(state.holdings)}",
@@ -144,11 +138,13 @@ class AccountView extends StatelessWidget {
                                     Row(
                                       children: [
                                         Icon(
-                                          calculateDiff(state.holdings) > 0? Icons.arrow_upward : Icons.arrow_downward,
+                                          calculateDiff(state.holdings) > 0
+                                              ? Icons.arrow_upward
+                                              : Icons.arrow_downward,
                                           color: Constant.kPurpleColor,
                                         ),
                                         Text(
-                                          "${!calculateDiff(state.holdings).abs().isNaN? calculateDiff(state.holdings).abs() : 0.0}%",
+                                          "${!calculateDiff(state.holdings).abs().isNaN ? calculateDiff(state.holdings).abs() : 0.0}%",
                                           style: const TextStyle(
                                               color: Constant.kPurpleColor,
                                               fontSize: 18,
@@ -159,9 +155,11 @@ class AccountView extends StatelessWidget {
                                   ],
                                 );
                               }
-                              return Container(width: 50,
+                              return Container(
+                                width: 50,
                                 height: 50,
-                                color: Colors.greenAccent,);
+                                color: Colors.greenAccent,
+                              );
                             })
                       ],
                     ),
@@ -190,7 +188,7 @@ class AccountView extends StatelessWidget {
                           fixedSize: Size(160, 45),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16.0)),
-                          side: BorderSide(
+                          side: const BorderSide(
                               style: BorderStyle.solid, color: Colors.white)),
                       child: const Text(
                         "Withdraw",
@@ -233,20 +231,20 @@ class AccountView extends StatelessWidget {
 
                   if (state is AccountInitial) {
                     return Expanded(
-                    child: ListView.separated(
-                        shrinkWrap: false,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: 10,
-                        separatorBuilder:
-                            (BuildContext context, int index) {
-                          return const SizedBox(height: 15);
-                        },
-                        itemBuilder: (BuildContext context, int index) {
-                          return const CurrencyCard(
-                            activeHolding: null,
-                            isLoading: true,
-                          );
-                        }));
+                        child: ListView.separated(
+                            shrinkWrap: false,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: 10,
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return const SizedBox(height: 15);
+                            },
+                            itemBuilder: (BuildContext context, int index) {
+                              return const CurrencyCard(
+                                activeHolding: null,
+                                isLoading: true,
+                              );
+                            }));
                   } else if (state is ShowDataState) {
                     print("Current elem: ${state.holdings.length}");
                     return Expanded(
@@ -291,13 +289,18 @@ class AccountView extends StatelessWidget {
       onStart += element.amount * element.exchangeRates.first;
       onEnd += element.amount * element.exchangeRates.last;
     });
-    return double.parse((((onEnd / onStart) - 1.0 ) * 100.0).toStringAsFixed(2));
+    return double.parse((((onEnd / onStart) - 1.0) * 100.0).toStringAsFixed(2));
   }
 
   loadData() async {
-    /* SaveCurrenciesLocally saveCurrenciesLocally = Get.find();
-    await saveCurrenciesLocally.call();
-    UpdateExchangeRates updateExchangeRates = Get.find();
-    await updateExchangeRates.call();*/
+    /*var cur1 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(0);
+    var cur2 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(1);
+    var cur3 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(2);
+    cur1!.amount = cur1.amount + 0.25;
+    cur2!.amount = cur2.amount + 0.25;
+    cur3!.amount = cur3.amount + 0.25;
+    Hive.box<CurrencyEntity>("CurrencyTable").putAt(0, cur1);
+    Hive.box<CurrencyEntity>("CurrencyTable").putAt(1, cur2);
+    Hive.box<CurrencyEntity>("CurrencyTable").putAt(2, cur3);*/
   }
 }

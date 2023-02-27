@@ -12,16 +12,17 @@ class HiveDB{
     Hive.registerAdapter(CurrencyEntityAdapter());
     await Hive.openBox<CurrencyEntity>("CurrencyTable");
 
-   /* var cur1 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(0);
-    var cur2 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(1);
-    var cur3 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(2);
-    cur1!.amount = 0.25;
-    cur2!.amount = 2.23;
-    cur3!.amount = 2.26;
-    Hive.box<CurrencyEntity>("CurrencyTable").putAt(0, cur1);
-    Hive.box<CurrencyEntity>("CurrencyTable").putAt(1, cur2);
-    Hive.box<CurrencyEntity>("CurrencyTable").putAt(2, cur3);*/
-  }
+    /*if(Hive.box("CurrencyTable").isNotEmpty) {
+      var cur1 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(0);
+      var cur2 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(1);
+      var cur3 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(2);
+      cur1!.amount = 0.25;
+      cur2!.amount = 2.23;
+      cur3!.amount = 2.26;
+      Hive.box<CurrencyEntity>("CurrencyTable").putAt(0, cur1);
+      Hive.box<CurrencyEntity>("CurrencyTable").putAt(1, cur2);
+      Hive.box<CurrencyEntity>("CurrencyTable").putAt(2, cur3);
+    }*/}
 
   static saveData(){
     Hive.close();

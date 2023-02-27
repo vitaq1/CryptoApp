@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:hive/hive.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class CurrencyCard extends StatelessWidget {
@@ -163,7 +162,7 @@ class CurrencyCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             color: HexColor(activeHolding!.color)),
                         child: Padding(
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                             child: SvgPicture.asset(
                                 "assets/icons/${activeHolding!.code.toLowerCase()}.svg")),
                       ),
@@ -207,9 +206,9 @@ class CurrencyCard extends StatelessWidget {
                     flex: 4,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Container(
+                      child: SizedBox(
                           width: 100,
-                          height: 45,
+                          height: 40,
                           child: SfSparkAreaChart(
                             data: activeHolding!.exchangeRates,
                             //color: Colors.greenAccent,
