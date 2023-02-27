@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shimmer/shimmer.dart';
 
 import 'bloc/account_bloc.dart';
 
@@ -35,7 +34,7 @@ class AccountView extends StatelessWidget {
           child: IconButton(
             iconSize: 35,
             onPressed: () {},
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
           )),
     );
   }
@@ -84,7 +83,7 @@ class AccountView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Current balance",
                           style: TextStyle(
                               color: Colors.black,
@@ -123,7 +122,7 @@ class AccountView extends StatelessWidget {
                                   children: [
                                     Text(
                                       "\$${calculateBalance(state.holdings)}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 24,
                                           fontWeight: FontWeight.w700),
@@ -136,7 +135,7 @@ class AccountView extends StatelessWidget {
                                         ),
                                         Text(
                                           "${calculateDiff(state.holdings).abs()}%",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Constant.kPurpleColor,
                                               fontSize: 16,
                                               fontWeight: FontWeight.w700),
@@ -164,25 +163,25 @@ class AccountView extends StatelessWidget {
                         onPressed: () {
                           loadData();
                         },
-                        child: Text("Deposit"),
                         style: ElevatedButton.styleFrom(
                             fixedSize: Size(160, 45),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16.0),
                             ),
-                            backgroundColor: Constant.kPurpleColor)),
+                            backgroundColor: Constant.kPurpleColor),
+                        child: const Text("Deposit")),
                     OutlinedButton(
                       onPressed: () {},
-                      child: Text(
-                        "Withdraw",
-                        style: TextStyle(color: Colors.white),
-                      ),
                       style: OutlinedButton.styleFrom(
                           fixedSize: Size(160, 45),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16.0)),
                           side: BorderSide(
                               style: BorderStyle.solid, color: Colors.white)),
+                      child: const Text(
+                        "Withdraw",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     )
                   ],
                 ),
@@ -192,7 +191,7 @@ class AccountView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Holdings",
                       style: TextStyle(
                           fontSize: 20,
@@ -201,7 +200,7 @@ class AccountView extends StatelessWidget {
                     ),
                     TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           "See all",
                           style: TextStyle(
                               fontSize: 14,
@@ -216,6 +215,8 @@ class AccountView extends StatelessWidget {
                   // TODO: implement listener
                 },
                 builder: (context, state) {
+                  print("Current state: ${state.toString()}");
+
                   if (state is AccountInitial) {
                     return Expanded(
                     child: ListView.separated(
@@ -224,15 +225,16 @@ class AccountView extends StatelessWidget {
                         itemCount: 10,
                         separatorBuilder:
                             (BuildContext context, int index) {
-                          return SizedBox(height: 15);
+                          return const SizedBox(height: 15);
                         },
                         itemBuilder: (BuildContext context, int index) {
-                          return CurrencyCard(
+                          return const CurrencyCard(
                             activeHolding: null,
                             isLoading: true,
                           );
                         }));
                   } else if (state is ShowDataState) {
+                    print("Current elem: ${state.holdings.length}");
                     return Expanded(
                         child: ListView.separated(
                             shrinkWrap: false,
@@ -240,7 +242,7 @@ class AccountView extends StatelessWidget {
                             itemCount: state.holdings.length,
                             separatorBuilder:
                                 (BuildContext context, int index) {
-                              return SizedBox(height: 15);
+                              return const SizedBox(height: 15);
                             },
                             itemBuilder: (BuildContext context, int index) {
                               return CurrencyCard(

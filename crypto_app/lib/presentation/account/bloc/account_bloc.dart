@@ -24,15 +24,19 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
 
 
     on<LoadDataEvent>((event, emit) async {
-      log("start loading");
 
       await updateExchangeRates.call();
       var holdings = await getAllCurrencies.call();
       if (holdings.isEmpty) {
         await saveCurrenciesLocally.call();
         await updateExchangeRates.call();
-        holdings = await getAllCurrencies.call();
       }
+      holdings = await getAllCurrencies.call();
+      holdings.forEach((element) {
+        log("code: ${element.code}");
+        log("rate: ${element.exchangeRates.length}");
+        //log("last elem: ${element.exchangeRates.last}");
+      });
       //log(holdings.first.exchangeRates.length.toString());
       //await Future.delayed(Duration(seconds: 1));
       emit(ShowDataState(holdings));

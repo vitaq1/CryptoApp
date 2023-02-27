@@ -3,10 +3,11 @@ import 'dart:math';
 
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/presentation/Constant.dart';
+import 'package:crypto_app/presentation/trading/TradingView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hive/hive.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class CurrencyCard extends StatelessWidget {
@@ -46,7 +47,7 @@ class CurrencyCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: Constant.kLightGrayColor),
-                      child: Padding(
+                      child: const Padding(
                           padding: EdgeInsets.all(8),
                           child: SizedBox(
                             width: 24,
@@ -70,7 +71,7 @@ class CurrencyCard extends StatelessWidget {
                                     color: Colors.white),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
@@ -109,7 +110,7 @@ class CurrencyCard extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.white)),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Container(
@@ -135,7 +136,9 @@ class CurrencyCard extends StatelessWidget {
             backgroundColor: Constant.kCardColor,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14))),
-        onPressed: () {},
+        onPressed: () {
+          Get.to(TradingView(activeHolding: activeHolding));
+        },
         child: SizedBox(
           //width: double.infinity,
           height: 80,
@@ -171,7 +174,7 @@ class CurrencyCard extends StatelessWidget {
                                 activeHolding!.name,
                                 overflow: TextOverflow.visible,
                                 softWrap: true,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     height: 1,
@@ -180,7 +183,7 @@ class CurrencyCard extends StatelessWidget {
                             ),
                             Text(
                               activeHolding!.code,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Constant.kLightGrayColor,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700),
@@ -222,7 +225,7 @@ class CurrencyCard extends StatelessWidget {
                             children: [
                               Text(
                                 "\$${double.parse((activeHolding!.amount * activeHolding!.exchangeRates.last).toStringAsFixed(2))}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     overflow: TextOverflow.visible,
                                     fontSize: 14,
@@ -230,7 +233,7 @@ class CurrencyCard extends StatelessWidget {
                               ),
                               Text(
                                 "${double.parse((activeHolding!.amount).toStringAsFixed(2))} ${activeHolding!.code}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Constant.kLightGrayColor,
                                     overflow: TextOverflow.visible,
                                     fontSize: 13,

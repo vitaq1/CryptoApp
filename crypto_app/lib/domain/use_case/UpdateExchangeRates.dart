@@ -15,6 +15,7 @@ class UpdateExchangeRates {
 
   call() async {
     var currencies = localRepository.getCurrencies();
+    log("currencies to update: ${currencies.length}");
     currencies.forEach((element) async {
       List<Future<ExchangeRate>> rates = [];
       var today = DateTime.now();
@@ -25,10 +26,10 @@ class UpdateExchangeRates {
             element.code, formatter.format(dateToFind)));
       }
       rates.add(remoteRepository.getExchangeRate(element.code));
-      var _rates = await Future.wait(rates);
+      var _rates = await Future.wait(rates,);
       _rates.sort((a, b) => a.date.compareTo(b.date));
 
-      //log("rates count: " + _rates.length.toString());
+      log("rates count for ${element.code}: " + _rates.length.toString());
 
       await localRepository.updateExchangeRatesForCurrency(
           element, _rates.map((e) => e.amount).toList());

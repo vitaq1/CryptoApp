@@ -9,7 +9,7 @@ class GetAllCurrencies {
 
   Future<List<Currency>> call() async{
 
-    return await repository.getCurrencies();
+    return repository.getCurrencies();
   }
 
 }
