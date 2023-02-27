@@ -1,7 +1,6 @@
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/AccountView.dart';
 import 'package:crypto_app/presentation/trading/TradingView.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

@@ -1,18 +1,15 @@
-
 class CurrencyDto {
-
   late String code;
   late String name;
   late String color;
   late int sortIndex;
 
-
   CurrencyDto({
-      required this.code,
-      required this.name,
-      required this.color,
-      required this.sortIndex,
-     });
+    required this.code,
+    required this.name,
+    required this.color,
+    required this.sortIndex,
+  });
 
   CurrencyDto.fromJson(dynamic json) {
     code = json['code'];
@@ -20,7 +17,6 @@ class CurrencyDto {
     color = json['color'];
     sortIndex = json['sort_index'];
   }
-
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -31,7 +27,4 @@ class CurrencyDto {
 
     return map;
   }
-
-
-
 }

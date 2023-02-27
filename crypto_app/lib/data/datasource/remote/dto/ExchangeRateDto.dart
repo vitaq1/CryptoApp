@@ -1,13 +1,7 @@
-
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-
 class ExchangeRateDto {
-
   late String base;
   late String currency;
   late double amount;
-
-
 
   ExchangeRateDto({
     required this.base,
@@ -21,7 +15,6 @@ class ExchangeRateDto {
     amount = double.parse(json['amount']);
   }
 
-
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['base'] = base;
@@ -30,7 +23,4 @@ class ExchangeRateDto {
 
     return map;
   }
-
-
-
 }

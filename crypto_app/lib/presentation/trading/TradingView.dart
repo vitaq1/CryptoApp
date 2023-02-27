@@ -2,6 +2,8 @@ import 'package:crypto_app/presentation/Constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import '../../domain/model/Currency.dart';
@@ -29,7 +31,7 @@ class TradingView extends StatelessWidget {
                 child: Container(
                   width: double.maxFinite,
                   height: 100,
-                  decoration: BoxDecoration(color: Colors.transparent),
+                  decoration: const BoxDecoration(color: Colors.transparent),
                   child: Padding(
                     padding:
                         const EdgeInsets.only(left: 15.0, top: 10, bottom: 10),
@@ -56,7 +58,7 @@ class TradingView extends StatelessWidget {
                           children: [
                             Text(
                               "${calculateBalance(activeHolding!)} USD",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 24,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700),
@@ -230,7 +232,7 @@ class TradingView extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
-      leadingWidth: 70,
+      leadingWidth: 75,
       toolbarHeight: 75,
       backgroundColor: CupertinoColors.darkBackgroundGray,
       elevation: 0,
@@ -255,8 +257,7 @@ class TradingView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10),
           child: SizedBox(
-            width: 64,
-            height: 64,
+            width: 55,
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -275,7 +276,10 @@ class TradingView extends StatelessWidget {
       leading: Padding(
         padding: const EdgeInsets.all(10),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+            // Get.to(TradingView(activeHolding: activeHolding));
+          },
           style: ElevatedButton.styleFrom(
               alignment: Alignment.center,
               backgroundColor: Constant.kGrayColor,

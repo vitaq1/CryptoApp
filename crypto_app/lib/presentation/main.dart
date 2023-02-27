@@ -2,7 +2,6 @@ import 'package:crypto_app/data/datasource/local/HiveDB.dart';
 import 'package:crypto_app/presentation/splash/SplashView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
 import '../di/DI.dart';
 

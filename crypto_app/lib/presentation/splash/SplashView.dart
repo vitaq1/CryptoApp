@@ -19,7 +19,7 @@ class SplashView extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: RichText(
-                    text: TextSpan(children: [
+                    text: const TextSpan(children: [
                       TextSpan(
                           text: "Crypt",
                           style: TextStyle(
@@ -49,10 +49,10 @@ class SplashView extends StatelessWidget {
                 ),
               ),
             ),
-            const Expanded(
+            Expanded(
               flex: 1,
               child: Column(
-                children: [
+                children: const [
                   Expanded(
                     flex: 2,
                     child: Padding(

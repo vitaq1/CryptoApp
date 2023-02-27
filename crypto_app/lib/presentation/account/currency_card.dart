@@ -169,11 +169,11 @@ class CurrencyCard extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    flex: 3,
+                    flex: 4,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 12.0, right: 6),
                       child: SizedBox(
-                        width: 90,
+                        width: 110,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -183,9 +183,10 @@ class CurrencyCard extends StatelessWidget {
                                 activeHolding!.name,
                                 overflow: TextOverflow.visible,
                                 softWrap: true,
+                                maxLines: 4,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     height: 1,
                                     fontWeight: FontWeight.w700),
                               ),
@@ -205,7 +206,7 @@ class CurrencyCard extends StatelessWidget {
                   Expanded(
                     flex: 4,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: SizedBox(
                           width: 100,
                           height: 40,
@@ -228,7 +229,7 @@ class CurrencyCard extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const EdgeInsets.only(left: 6),
                       child: SizedBox(
                         width: 70,
                         child: Column(

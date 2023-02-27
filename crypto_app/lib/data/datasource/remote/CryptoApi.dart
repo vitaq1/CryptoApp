@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:chopper/chopper.dart';
 import 'package:crypto_app/data/datasource/remote/dto/ExchangeRateDto.dart';
 import 'package:crypto_app/data/datasource/remote/endpoint/Endpoint.dart';

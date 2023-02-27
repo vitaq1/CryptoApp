@@ -1,7 +1,6 @@
 import 'dart:ui';
 
-class Constant{
-
+class Constant {
 
   static const kPurpleColor = Color(0XFF6552FE);
   static const kDarkColor = Color(0XFF070707);
@@ -10,8 +9,6 @@ class Constant{
   static const kNavColor = Color(0XFF121212);
   static const kCashColor = Color(0XFFF7DABB);
   static const kCardColor = Color(0XFF18181C);
-
-
 }
 
 class HexColor extends Color {
