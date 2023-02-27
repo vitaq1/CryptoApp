@@ -51,6 +51,7 @@ dev_dependencies:
   json_serializable: ^6.6.1
   chopper_generator: ^6.0.0
   build_runner: ^2.3.3
+  logging: ^1.1.1
   flutter_test:
     sdk: flutter
 

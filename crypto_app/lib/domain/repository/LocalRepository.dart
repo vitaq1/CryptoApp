@@ -25,10 +25,11 @@ class LocalRepository {
     });
   }
 
-  updateExchangeRatesForCurrency(Currency currency, List<double> rates){
+  Future<Currency> updateExchangeRatesForCurrency(Currency currency, List<double> rates) async {
     //log("rates count 2: " + rates.length.toString());
     currency.exchangeRates = rates;
     db.currencyTable.put(currency.key, currency.toCurrencyEntity());
+    return currency;
   }
 
 }

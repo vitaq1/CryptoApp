@@ -1,7 +1,5 @@
-import 'dart:async';
-import 'dart:developer';
-import 'dart:io';
 
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:crypto_app/domain/use_case/GetAllCurrencies.dart';
 import 'package:crypto_app/domain/use_case/SaveCurrenciesLocally.dart';
@@ -28,10 +26,12 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       await updateExchangeRates.call();
       var holdings = await getAllCurrencies.call();
       if (holdings.isEmpty) {
+        log("In if");
         await saveCurrenciesLocally.call();
-        await updateExchangeRates.call();
+        holdings = await updateExchangeRates.call();
+        log("Out if");
       }
-      holdings = await getAllCurrencies.call();
+      log("After if");
       holdings.forEach((element) {
         log("code: ${element.code}");
         log("rate: ${element.exchangeRates.length}");

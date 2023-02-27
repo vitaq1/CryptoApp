@@ -4,6 +4,7 @@ import 'package:crypto_app/domain/model/ExchangeRate.dart';
 import 'package:crypto_app/domain/repository/LocalRepository.dart';
 import 'package:intl/intl.dart';
 
+import '../model/Currency.dart';
 import '../repository/RemoteRepository.dart';
 
 class UpdateExchangeRates {
@@ -13,26 +14,33 @@ class UpdateExchangeRates {
   final RemoteRepository remoteRepository;
   final LocalRepository localRepository;
 
-  call() async {
+  Future<List<Currency>> call() async{
     var currencies = localRepository.getCurrencies();
-    log("currencies to update: ${currencies.length}");
+    List<Future<Currency>> futureCurrencies = [];
+
     currencies.forEach((element) async {
       List<Future<ExchangeRate>> rates = [];
       var today = DateTime.now();
       var formatter = DateFormat('yyyy-MM-dd');
-      for (int i = 13; i > 0; i--) {
+      for (int i = 6; i > 0; i--) {
         var dateToFind = today.subtract(Duration(days: i));
         rates.add(remoteRepository.getExchangeRateByDate(
             element.code, formatter.format(dateToFind)));
       }
       rates.add(remoteRepository.getExchangeRate(element.code));
-      var _rates = await Future.wait(rates,);
-      _rates.sort((a, b) => a.date.compareTo(b.date));
 
-      log("rates count for ${element.code}: " + _rates.length.toString());
+      futureCurrencies.add(getFutureWithRate(element, rates));
 
-      await localRepository.updateExchangeRatesForCurrency(
-          element, _rates.map((e) => e.amount).toList());
     });
+
+    return await Future.wait(futureCurrencies);
+  }
+
+
+  Future<Currency> getFutureWithRate(Currency currency, List<Future<ExchangeRate>> rates) async {
+    var r = await Future.wait(rates);
+    var c = localRepository.updateExchangeRatesForCurrency(
+        currency, r.map((e) => e.amount).toList());
+    return c;
   }
 }

@@ -1,9 +1,8 @@
-import 'dart:math';
+
 
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/currency_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -71,10 +70,25 @@ class AccountView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
                 child: Container(
-                  width: 370,
-                  height: 120,
+                  width: double.maxFinite,
+                  height: 150,
                   decoration: BoxDecoration(
-                      color: Constant.kCashColor,
+                      gradient: const LinearGradient(
+                        begin: Alignment.topRight, 
+                        end: Alignment.bottomLeft,
+
+                        stops: [
+                          0.0,
+                          0.4,
+                          0.9,
+                        ],
+                        colors: [
+                          Color(0xFFD592A7),
+                          Color(0xFFFDE4BE),
+                          Color(0xFFA4C0D3),
+
+                        ],
+                      ),
                       borderRadius: BorderRadius.circular(16)),
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -87,7 +101,7 @@ class AccountView extends StatelessWidget {
                           "Current balance",
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize: 24,
                               fontWeight: FontWeight.w500),
                         ),
                         BlocConsumer<AccountBloc, AccountState>(
@@ -124,7 +138,7 @@ class AccountView extends StatelessWidget {
                                       "\$${calculateBalance(state.holdings)}",
                                       style: const TextStyle(
                                           color: Colors.black,
-                                          fontSize: 24,
+                                          fontSize: 26,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Row(
@@ -134,10 +148,10 @@ class AccountView extends StatelessWidget {
                                           color: Constant.kPurpleColor,
                                         ),
                                         Text(
-                                          "${calculateDiff(state.holdings).abs()}%",
+                                          "${!calculateDiff(state.holdings).abs().isNaN? calculateDiff(state.holdings).abs() : 0.0}%",
                                           style: const TextStyle(
                                               color: Constant.kPurpleColor,
-                                              fontSize: 16,
+                                              fontSize: 18,
                                               fontWeight: FontWeight.w700),
                                         ),
                                       ],

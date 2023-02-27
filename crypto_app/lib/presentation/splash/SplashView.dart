@@ -8,89 +8,107 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 100,
-        leadingWidth: double.infinity,
-        backgroundColor: Constant.kDarkColor,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 10),
-          child: RichText(
-            text: TextSpan(children: [
-              TextSpan(
-                  text: "Crypt",
-                  style: TextStyle(
-                      fontSize: 64,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "Poppins")),
-              TextSpan(
-                  text: "X",
-                  style: TextStyle(
-                      fontSize: 64,
-                      fontWeight: FontWeight.w700,
-                      color: Constant.kPurpleColor,
-                      fontFamily: "Poppins")),
-            ]),
-          ),
-        ),
-      ),
       body: Container(
         color: Constant.kDarkColor,
         child: Column(
           children: [
-            Padding(
-                padding: EdgeInsets.only(left: 50),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(30),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                          text: "Crypt",
+                          style: TextStyle(
+                              fontSize: 64,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Poppins")),
+                      TextSpan(
+                          text: "X",
+                          style: TextStyle(
+                              fontSize: 64,
+                              fontWeight: FontWeight.w700,
+                              color: Constant.kPurpleColor,
+                              fontFamily: "Poppins")),
+                    ]),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Align(
+                alignment: Alignment.centerRight,
                 child: Image.asset(
                   "assets/images/logo.png",
                   width: 370,
                   height: 370,
-                )),
-            Padding(
-              padding: const EdgeInsets.only(left: 50.0),
-              child: Text(
-                "Jump start your crypto portfolio",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 32),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 50.0, top: 30, right: 140),
-              child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    "Take your investment portfolio to next level",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14),
-                  )),
+            const Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 50.0),
+                      child: Text(
+                        "Jump start your crypto portfolio",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 32),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 50.0, right: 140),
+                      child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Text(
+                            "Take your investment portfolio to next level",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14),
+                          )),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Padding(
-                padding: const EdgeInsets.only(top: 40.0),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
-                      return Constant.kPurpleColor;
-                    }),
-                    fixedSize:
-                    MaterialStateProperty.resolveWith((states) {
-                      return Size(320, 60);
-                    }),
-                    shape: MaterialStateProperty.resolveWith((states) {
-                      return RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
-                    }),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  height: 50,
+                  width: double.maxFinite,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                    child: ElevatedButton(
+
+                      style: ElevatedButton.styleFrom(fixedSize: Size(double.maxFinite, 50),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                      child: const Text(
+                        "Get started",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      onPressed: () {
+                        Get.to(const MainView());
+                      },
+                    ),
                   ),
-                  child: Text(
-                    "Get started",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  onPressed: () {
-                    Get.to(MainView());
-                  },
-                ))
+                ),
+              ),
+            )
           ],
         ),
       ),
