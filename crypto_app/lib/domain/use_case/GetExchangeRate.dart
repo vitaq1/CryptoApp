@@ -1,4 +1,3 @@
-import 'package:crypto_app/data/datasource/remote/dto/ExchangeRateDto.dart';
 import 'package:crypto_app/domain/model/ExchangeRate.dart';
 
 import '../repository/RemoteRepository.dart';

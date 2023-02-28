@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/domain/repository/LocalRepository.dart';
 import 'package:crypto_app/domain/repository/RemoteRepository.dart';
 
@@ -15,7 +12,6 @@ class SaveCurrenciesLocally {
 
      var currencies = (await remoteRepository.getCurrencies()).where((element) => element.sortIndex < 120).toList();
      await localRepository.addCurrencies(currencies);
-     log("Currencies[${currencies.length}] saved locally");
   }
 
 }

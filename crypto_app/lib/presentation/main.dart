@@ -30,6 +30,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: "Poppins",
         primarySwatch: Colors.blue,
       ),
+
       home: SplashView(),
     );
   }

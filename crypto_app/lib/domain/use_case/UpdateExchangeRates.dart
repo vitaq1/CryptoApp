@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:crypto_app/domain/model/ExchangeRate.dart';
 import 'package:crypto_app/domain/repository/LocalRepository.dart';
 import 'package:intl/intl.dart';
@@ -17,18 +15,16 @@ class UpdateExchangeRates {
   Future<List<Currency>> call() async{
     var currencies = localRepository.getCurrencies();
     List<Future<Currency>> futureCurrencies = [];
-
+    var today = DateTime.now();
+    var formatter = DateFormat('yyyy-MM-dd');
     currencies.forEach((element) async {
       List<Future<ExchangeRate>> rates = [];
-      var today = DateTime.now();
-      var formatter = DateFormat('yyyy-MM-dd');
       for (int i = 6; i > 0; i--) {
         var dateToFind = today.subtract(Duration(days: i));
         rates.add(remoteRepository.getExchangeRateByDate(
             element.code, formatter.format(dateToFind)));
       }
       rates.add(remoteRepository.getExchangeRate(element.code));
-
       futureCurrencies.add(getFutureWithRate(element, rates));
 
     });

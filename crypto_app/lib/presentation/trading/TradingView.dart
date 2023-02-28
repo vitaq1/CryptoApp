@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -138,12 +140,30 @@ class TradingView extends StatelessWidget {
                           child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return BackdropFilter(
+                                        filter: ImageFilter.blur(
+                                            sigmaX: 5, sigmaY: 5),
+                                        child: AlertDialog(
+                                          contentPadding: EdgeInsets.all(0),
+                                          backgroundColor: Colors.green,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                          content: Container(
+                                            height: 250,
+                                            //decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(15)),
+                                            child: Column(),
+                                          ),
+                                        ));
+                                  });
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.green,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12))),
-                            child: SizedBox(
+                            child: const SizedBox(
                                 height: 46,
                                 child: Center(
                                     child: Text(
@@ -160,7 +180,7 @@ class TradingView extends StatelessWidget {
                                 backgroundColor: Colors.redAccent,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12))),
-                            child: SizedBox(
+                            child: const SizedBox(
                                 height: 46,
                                 child: Center(
                                     child: Text(
@@ -192,7 +212,7 @@ class TradingView extends StatelessWidget {
                         ),
                         RichText(
                             text: TextSpan(children: [
-                          TextSpan(
+                          const TextSpan(
                               text: "1 ",
                               style: TextStyle(
                                   fontSize: 20,
@@ -208,11 +228,11 @@ class TradingView extends StatelessWidget {
                           TextSpan(
                               text:
                                   " = ${activeHolding!.exchangeRates.last.toStringAsFixed(2)} ",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w700,
                                   fontFamily: "Poppins")),
-                          TextSpan(
+                          const TextSpan(
                               text: "USD",
                               style: TextStyle(
                                   fontSize: 20,

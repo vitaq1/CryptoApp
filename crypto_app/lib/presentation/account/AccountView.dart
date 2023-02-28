@@ -1,9 +1,12 @@
+
+
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/currency_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:skeletons/skeletons.dart';
 
 import 'bloc/account_bloc.dart';
 
@@ -85,7 +88,7 @@ class AccountView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16)),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 20.0, top: 12, bottom: 12, right: 20),
+                        left: 20.0, top: 12, bottom: 12, right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,22 +108,16 @@ class AccountView extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      width: 120,
-                                      height: 24,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 50,
-                                      height: 16,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Constant.kPurpleColor,
-                                      ),
-                                    ),
+                                    SkeletonLine(style: SkeletonLineStyle(
+                                      height: 26, maxLength: 120, minLength: 100, randomLength: true,
+                                      borderRadius: BorderRadius.circular(12)
+                                    ),),
+
+                                    SkeletonLine(style: SkeletonLineStyle(
+                                        height: 18, maxLength: 50, minLength: 40, randomLength: true,
+                                        borderRadius: BorderRadius.circular(12)
+                                    ),)
+
                                   ],
                                 );
                               } else if (state is ShowDataState) {
@@ -227,7 +224,6 @@ class AccountView extends StatelessWidget {
                   // TODO: implement listener
                 },
                 builder: (context, state) {
-                  print("Current state: ${state.toString()}");
 
                   if (state is AccountInitial) {
                     return Expanded(
@@ -246,7 +242,6 @@ class AccountView extends StatelessWidget {
                               );
                             }));
                   } else if (state is ShowDataState) {
-                    print("Current elem: ${state.holdings.length}");
                     return Expanded(
                         child: ListView.separated(
                             shrinkWrap: false,

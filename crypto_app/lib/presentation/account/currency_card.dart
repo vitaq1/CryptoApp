@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:skeletons/skeletons.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class CurrencyCard extends StatelessWidget {
@@ -23,115 +24,110 @@ class CurrencyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.zero,
-            backgroundColor: Constant.kCardColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14))),
-        onPressed: () {
-          Get.to(TradingView(activeHolding: activeHolding));
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: SizedBox(
-            width: double.maxFinite,
-            height: 90,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Flexible(
-                    flex: 2,
-                    child: SizedBox(
-                      width: 55,
-                      height: 55,
-                      child: Container(
-                        width: double.maxFinite,
-                        height: double.maxFinite,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Constant.kGrayColor),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 12.0, right: 6),
-                      child: SizedBox(
-                        width: 90,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Flexible(
-                                child: Container(
-                              height: 14,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: Colors.white),
-                            )),
-                            const SizedBox(height: 5),
-                            Container(
-                              height: 12,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: Constant.kLightGrayColor),
-                            )
-                          ],
+      return  ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.zero,
+              backgroundColor: Constant.kGrayColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14))),
+          onPressed: () {
+            Get.to(TradingView(activeHolding: activeHolding));
+          },
+          child: SkeletonItem(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: SizedBox(
+                width: double.maxFinite,
+                height: 90,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        flex: 2,
+                        child: SkeletonAvatar(
+                          style: SkeletonAvatarStyle(
+                              shape: BoxShape.rectangle, width: 55, height: 55, borderRadius: BorderRadius.circular(12)),
                         ),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Container(
-                        width: 120,
-                        height: 45,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.greenAccent),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: SizedBox(
-                        width: 70,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Container(
-                              height: 12,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: Colors.white),
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.0, right: 6),
+                          child: SizedBox(
+                            width: 90,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                    child: Container(
+                                  height: 14,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.white),
+                                )),
+                                const SizedBox(height: 5),
+                                Container(
+                                  height: 12,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Constant.kLightGrayColor),
+                                )
+                              ],
                             ),
-                            const SizedBox(height: 5),
-                            Container(
-                              height: 11,
-                              width: 20,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: Constant.kLightGrayColor),
-                            )
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                ]),
+                      Expanded(
+                        flex: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: Container(
+                            width: 120,
+                            height: 45,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: Colors.greenAccent),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: SizedBox(
+                            width: 70,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  height: 12,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.white),
+                                ),
+                                const SizedBox(height: 5),
+                                Container(
+                                  height: 11,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Constant.kLightGrayColor),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ]),
+              ),
+            ),
           ),
-        ),
       );
     } else {
       return ElevatedButton(

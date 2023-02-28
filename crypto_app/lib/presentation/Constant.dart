@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
+
 class Constant {
 
   static const kPurpleColor = Color(0XFF6552FE);
@@ -9,7 +11,27 @@ class Constant {
   static const kNavColor = Color(0XFF121212);
   static const kCashColor = Color(0XFFF7DABB);
   static const kCardColor = Color(0XFF18181C);
+
+  static const shimmerGradient = LinearGradient(
+    colors: [
+      Color(0xFFEBEBF4),
+      Color(0xFFF4F4F4),
+      Color(0xFFEBEBF4),
+    ],
+    stops: [
+      0.1,
+      0.3,
+      0.4,
+    ],
+    begin: Alignment(-1.0, -0.3),
+    end: Alignment(1.0, 0.3),
+    tileMode: TileMode.clamp,
+  );
+
+
 }
+
+
 
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {

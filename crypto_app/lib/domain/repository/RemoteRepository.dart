@@ -15,7 +15,6 @@ class RemoteRepository implements ICryptoRepository{
   Future<List<Currency>> getCurrencies() async {
     var items = await api.fetchCurrencies();
     return items.body!.map((e) => Currency.fromCurrencyDto(e)).toList();
-    //return items.body!.data?.map((e) => e.toCurrency()).toList();
   }
 
   Future<ExchangeRate> getExchangeRate(String cryptoCode) async{
