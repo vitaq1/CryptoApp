@@ -23,10 +23,9 @@ class SellDialog extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: AlertDialog(
           contentPadding: EdgeInsets.all(0),
-          //backgroundColor: Constant.kGrayColor,
           backgroundColor: Constant.kGrayColor,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           content: BlocProvider(
             create: (context) => TradingBloc(),
             child: BlocConsumer<TradingBloc, TradingState>(
@@ -37,7 +36,7 @@ class SellDialog extends StatelessWidget {
               },
               builder: (context, state) {
                 return SizedBox(
-                  height: 250,
+                  height: 300,
                   width: 270,
                   //decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(15)),
                   child: Padding(
@@ -45,12 +44,12 @@ class SellDialog extends StatelessWidget {
                     child: Column(
                       children: [
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Flexible(
@@ -74,9 +73,9 @@ class SellDialog extends StatelessWidget {
                                         height: 70,
                                         child: Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Flexible(
                                               child: Text(
@@ -89,14 +88,14 @@ class SellDialog extends StatelessWidget {
                                                     fontSize: 15,
                                                     height: 1,
                                                     fontWeight:
-                                                        FontWeight.w700),
+                                                    FontWeight.w700),
                                               ),
                                             ),
                                             Text(
                                               activeHolding.code,
                                               style: const TextStyle(
                                                   color:
-                                                      Constant.kLightGrayColor,
+                                                  Constant.kLightGrayColor,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w700),
                                             )
@@ -108,12 +107,53 @@ class SellDialog extends StatelessWidget {
                                 ]),
                           ),
                         ),
-                        Expanded(
-                          flex: 3,
-                          child: Align(
+                        Expanded(flex: 1,child:
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: RichText(
+                              text: TextSpan(children: [
+                                const TextSpan(
+                                    text: "1 ",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins")),
+                                TextSpan(
+                                    text: "${activeHolding!.code}",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: HexColor(activeHolding!.color),
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins")),
+                                TextSpan(
+                                    text:
+                                    " = ${activeHolding!.exchangeRates.last.toStringAsFixed(2)} ",
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins")),
+                                const TextSpan(
+                                    text: "USD",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins")),
+                              ])),
+                        )
+                        ),
+                        Expanded(flex: 1,child:
+                        Align(
                             alignment: Alignment.bottomCenter,
+                            child: Text("You have: ${activeHolding.amount.toStringAsFixed(2)} ${activeHolding.code}", style: TextStyle(color: Constant.kLightGrayColor),)
+                        )
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: Align(
+                            alignment: Alignment.center,
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -121,16 +161,16 @@ class SellDialog extends StatelessWidget {
                                     height: 44,
                                     child: TextField(
                                       keyboardType:
-                                          const TextInputType.numberWithOptions(
-                                              decimal: true),
+                                      const TextInputType.numberWithOptions(
+                                          decimal: true),
                                       controller: controller,
                                       showCursor: false,
                                       textAlignVertical:
-                                          TextAlignVertical.center,
+                                      TextAlignVertical.center,
                                       decoration: InputDecoration(
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                               borderSide: const BorderSide(
                                                   width: 0,
                                                   style: BorderStyle.none)),
@@ -148,21 +188,21 @@ class SellDialog extends StatelessWidget {
                                   ElevatedButton(
                                       onPressed: () {
                                         var amount =
-                                            double.tryParse(controller.text);
+                                        double.tryParse(controller.text);
                                         amount != null ? context.read<TradingBloc>().add(SellCurrencyEvent(activeHolding, amount)) : printError(info: "incorrect data");
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.redAccent,
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(12))),
+                                              BorderRadius.circular(12))),
                                       child: const SizedBox(
                                           height: 44,
                                           child: Center(
                                               child: Text(
-                                            "Sell",
-                                            style: TextStyle(fontSize: 20),
-                                          ))))
+                                                "Sell",
+                                                style: TextStyle(fontSize: 20),
+                                              ))))
                                 ],
                               ),
                             ),

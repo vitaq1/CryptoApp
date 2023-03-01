@@ -23,7 +23,6 @@ class BuyDialog extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: AlertDialog(
           contentPadding: EdgeInsets.all(0),
-          //backgroundColor: Constant.kGrayColor,
           backgroundColor: Constant.kGrayColor,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -37,7 +36,7 @@ class BuyDialog extends StatelessWidget {
               },
               builder: (context, state) {
                 return SizedBox(
-                  height: 250,
+                  height: 300,
                   width: 270,
                   //decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(15)),
                   child: Padding(
@@ -45,7 +44,7 @@ class BuyDialog extends StatelessWidget {
                     child: Column(
                       children: [
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Row(
@@ -108,12 +107,53 @@ class BuyDialog extends StatelessWidget {
                                 ]),
                           ),
                         ),
+                        Expanded(flex: 1,child:
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: RichText(
+                              text: TextSpan(children: [
+                                const TextSpan(
+                                    text: "1 ",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins")),
+                                TextSpan(
+                                    text: "${activeHolding!.code}",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: HexColor(activeHolding!.color),
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins")),
+                                TextSpan(
+                                    text:
+                                    " = ${activeHolding!.exchangeRates.last.toStringAsFixed(2)} ",
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins")),
+                                const TextSpan(
+                                    text: "USD",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Poppins")),
+                              ])),
+                        )
+                        ),
+                        Expanded(flex: 1,child:
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text("You have: ${activeHolding.amount.toStringAsFixed(2)} ${activeHolding.code}", style: TextStyle(color: Constant.kLightGrayColor),)
+                        )
+                        ),
                         Expanded(
-                          flex: 3,
+                          flex: 4,
                           child: Align(
-                            alignment: Alignment.bottomCenter,
+                            alignment: Alignment.center,
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [

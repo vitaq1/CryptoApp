@@ -32,7 +32,7 @@ class TradingView extends StatelessWidget {
         return Future.value(false);
       },
       child: Scaffold(
-          appBar: buildAppBar(),
+          appBar: buildAppBar(context),
           body: BlocProvider(
             create: (context) => TradingBloc(),
             child: BlocConsumer<TradingBloc, TradingState>(
@@ -80,33 +80,43 @@ class TradingView extends StatelessWidget {
                                           color: Colors.white,
                                           fontWeight: FontWeight.w700),
                                     ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          calculateDiff(activeHolding
-                                                      .exchangeRates) >
-                                                  0
-                                              ? Icons.arrow_upward
-                                              : Icons.arrow_downward,
-                                          color: calculateDiff(activeHolding
-                                                      .exchangeRates) >
-                                                  0
-                                              ? Colors.green
-                                              : Colors.redAccent,
-                                        ),
-                                        Text(
-                                          "${calculateDiff(activeHolding.exchangeRates)}%",
-                                          style: TextStyle(
-                                              color: calculateDiff(
-                                                          activeHolding
-                                                              .exchangeRates) >
-                                                      0
-                                                  ? Colors.green
-                                                  : Colors.redAccent,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      ],
+                                    Text(
+                                      "${activeHolding.amount.toStringAsFixed(2)} ${activeHolding.code}",
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          color: Constant.kLightGrayColor,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            calculateDiff(activeHolding
+                                                        .exchangeRates) >
+                                                    0
+                                                ? Icons.arrow_upward
+                                                : Icons.arrow_downward,
+                                            color: calculateDiff(activeHolding
+                                                        .exchangeRates) >
+                                                    0
+                                                ? Colors.green
+                                                : Colors.redAccent,
+                                          ),
+                                          Text(
+                                            "${calculateDiff(activeHolding.exchangeRates)}%",
+                                            style: TextStyle(
+                                                color: calculateDiff(
+                                                            activeHolding
+                                                                .exchangeRates) >
+                                                        0
+                                                    ? Colors.green
+                                                    : Colors.redAccent,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ],
+                                      ),
                                     )
                                   ],
                                 )
@@ -162,12 +172,13 @@ class TradingView extends StatelessWidget {
                                     const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: ElevatedButton(
                                     onPressed: () async {
-                                      activeHolding = await showDialog(
+                                      var res = await showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
                                             return BuyDialog(
                                                 activeHolding: activeHolding);
                                           });
+                                      activeHolding = res ?? activeHolding;
                                       context.read<TradingBloc>().add(
                                           UpdateCurrencyEvent(activeHolding));
                                     },
@@ -190,12 +201,13 @@ class TradingView extends StatelessWidget {
                                     const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: ElevatedButton(
                                     onPressed: () async {
-                                      activeHolding = await showDialog(
+                                      var res = await showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
                                             return SellDialog(
                                                 activeHolding: activeHolding);
                                           });
+                                      activeHolding = res ?? activeHolding;
                                       context.read<TradingBloc>().add(
                                           UpdateCurrencyEvent(activeHolding));
                                     },
@@ -243,15 +255,15 @@ class TradingView extends StatelessWidget {
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins")),
                                   TextSpan(
-                                      text: "${activeHolding!.code}",
+                                      text: "${activeHolding.code}",
                                       style: TextStyle(
                                           fontSize: 20,
-                                          color: HexColor(activeHolding!.color),
+                                          color: HexColor(activeHolding.color),
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins")),
                                   TextSpan(
                                       text:
-                                          " = ${activeHolding!.exchangeRates.last.toStringAsFixed(2)} ",
+                                          " = ${activeHolding.exchangeRates.last.toStringAsFixed(2)} ",
                                       style: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w700,
@@ -278,7 +290,7 @@ class TradingView extends StatelessWidget {
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       leadingWidth: 75,
       toolbarHeight: 75,
@@ -291,11 +303,11 @@ class TradingView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                "assets/icons/${activeHolding!.code.toLowerCase()}.svg",
+                "assets/icons/${activeHolding.code.toLowerCase()}.svg",
                 width: 30,
               ),
               Text(
-                " ${activeHolding!.code} / USD",
+                " ${activeHolding.code} / USD",
                 style: const TextStyle(fontWeight: FontWeight.w700),
               )
             ],
@@ -325,7 +337,7 @@ class TradingView extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: ElevatedButton(
           onPressed: () {
-            Get.back();
+            Navigator.pop(context, activeHolding);
             // Get.to(TradingView(activeHolding: activeHolding));
           },
           style: ElevatedButton.styleFrom(
