@@ -4,9 +4,11 @@ import 'package:crypto_app/data/datasource/remote/Converters/ApiConverter.dart';
 import 'package:crypto_app/data/datasource/remote/CryptoApi.dart';
 import 'package:crypto_app/domain/repository/LocalRepository.dart';
 import 'package:crypto_app/domain/repository/RemoteRepository.dart';
+import 'package:crypto_app/domain/use_case/BuyCurrency.dart';
 import 'package:crypto_app/domain/use_case/GetAllCurrencies.dart';
 import 'package:crypto_app/domain/use_case/GetExchangeRate.dart';
 import 'package:crypto_app/domain/use_case/SaveCurrenciesLocally.dart';
+import 'package:crypto_app/domain/use_case/SellCurrency.dart';
 import 'package:crypto_app/domain/use_case/UpdateExchangeRates.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +28,8 @@ class DI {
     Get.put(GetExchangeRate(repository: Get.find()));
     Get.put(SaveCurrenciesLocally(remoteRepository: Get.find(), localRepository: Get.find()));
     Get.put(UpdateExchangeRates(remoteRepository: Get.find(), localRepository: Get.find()));
+    Get.put(BuyCurrency(localRepository: Get.find()));
+    Get.put(SellCurrency(localRepository: Get.find()));
   }
 
 }

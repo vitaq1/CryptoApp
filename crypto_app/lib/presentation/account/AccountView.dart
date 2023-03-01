@@ -164,38 +164,6 @@ class AccountView extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 18.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {
-                          loadData();
-                        },
-                        style: ElevatedButton.styleFrom(
-                            fixedSize: Size(160, 45),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            backgroundColor: Constant.kPurpleColor),
-                        child: const Text("Deposit")),
-                    OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                          fixedSize: Size(160, 45),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16.0)),
-                          side: const BorderSide(
-                              style: BorderStyle.solid, color: Colors.white)),
-                      child: const Text(
-                        "Withdraw",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(top: 24.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -236,7 +204,7 @@ class AccountView extends StatelessWidget {
                               return const SizedBox(height: 15);
                             },
                             itemBuilder: (BuildContext context, int index) {
-                              return const CurrencyCard(
+                              return CurrencyCard(
                                 activeHolding: null,
                                 isLoading: true,
                               );
@@ -258,7 +226,7 @@ class AccountView extends StatelessWidget {
                               );
                             }));
                   } else {
-                    return Container();
+                    return Container(width: 50,height: 50, color: Colors.red,);
                   }
                 },
               )

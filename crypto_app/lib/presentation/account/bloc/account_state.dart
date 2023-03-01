@@ -11,5 +11,10 @@ class ShowDataState extends AccountState{
   ShowDataState(this.holdings);
 }
 
+class CurrencyUpdatedState extends ShowDataState{
+  final List<Currency> holdings;
+  CurrencyUpdatedState(this.holdings) : super(holdings);
+}
+
 
 
