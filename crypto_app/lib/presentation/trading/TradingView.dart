@@ -129,7 +129,7 @@ class TradingView extends StatelessWidget {
                         flex: 3,
                         child: Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Container(
+                            child: SizedBox(
                               height: 300,
                               child: SfCartesianChart(
                                   primaryXAxis: CategoryAxis(),
