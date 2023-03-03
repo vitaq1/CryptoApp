@@ -140,7 +140,7 @@ class CurrencyCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14))),
             onPressed: () async {
               activeHolding =
-                  await Get.to(TradingView(activeHolding: activeHolding!));
+                  await Get.to(TradingView(activeHolding: activeHolding!) );
               context
                   .read<AccountBloc>()
                   .add(UpdateCurrencyEvent(activeHolding!));
@@ -165,8 +165,8 @@ class CurrencyCard extends StatelessWidget {
                                 color: HexColor(activeHolding!.color)),
                             child: Padding(
                                 padding: const EdgeInsets.all(8),
-                                child: SvgPicture.asset(
-                                    "assets/icons/${activeHolding!.code.toLowerCase()}.svg")),
+                                child: Image.asset(
+                                    "assets/images/${activeHolding!.code.toLowerCase()}.png")),
                           ),
                         ),
                       ),
@@ -249,6 +249,7 @@ class CurrencyCard extends StatelessWidget {
                                 ),
                                 Text(
                                   "${double.parse((activeHolding!.amount).toStringAsFixed(2))} ${activeHolding!.code}",
+                                  textAlign: TextAlign.end,
                                   style: const TextStyle(
                                       color: Constant.kLightGrayColor,
                                       overflow: TextOverflow.visible,

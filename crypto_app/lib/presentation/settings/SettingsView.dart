@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:crypto_app/presentation/settings/edit_account_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../Constant.dart';
 
@@ -26,13 +28,13 @@ class SettingsView extends StatelessWidget {
             )),
       ),
       body: ListView(children: [
-        SettingsCard(settingName: "Account", settingIcon: Icons.account_circle_rounded,),
-        SettingsCard(settingName: "Notifications", settingIcon: Icons.notifications,),
-        SettingsCard(settingName: "Appearance", settingIcon: Icons.remove_red_eye_outlined,),
-        SettingsCard(settingName: "Privacy & Security", settingIcon: Icons.lock_open_sharp,),
-        SettingsCard(settingName: "Help and Support", settingIcon: Icons.headphones,),
-        SettingsCard(settingName: "About", settingIcon: Icons.question_mark,),
-        LogoutCard()
+        SettingsCard(settingName: "Account", settingIcon: Icons.account_circle_rounded,onPressedCallBack: (){Get.to(const EditAccountView());}),
+        SettingsCard(settingName: "Notifications", settingIcon: Icons.notifications,onPressedCallBack: (){}),
+        SettingsCard(settingName: "Appearance", settingIcon: Icons.remove_red_eye_outlined,onPressedCallBack: (){}),
+        SettingsCard(settingName: "Privacy & Security", settingIcon: Icons.lock_open_sharp,onPressedCallBack: (){}),
+        SettingsCard(settingName: "Help and Support", settingIcon: Icons.headphones,onPressedCallBack: (){}),
+        SettingsCard(settingName: "About", settingIcon: Icons.question_mark,onPressedCallBack: (){}),
+        LogoutCard(onPressedCallBack: (){})
       ]),
     );
   }
@@ -42,12 +44,14 @@ class SettingsCard extends StatelessWidget {
 
   final String settingName;
   final IconData settingIcon;
+  final VoidCallback onPressedCallBack;
 
 
   const SettingsCard({
     super.key,
     required this.settingName,
-    required this.settingIcon
+    required this.settingIcon,
+    required this.onPressedCallBack
   });
 
   @override
@@ -55,7 +59,7 @@ class SettingsCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 6),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressedCallBack,
           style: ElevatedButton.styleFrom(backgroundColor: Constant.kGrayColor),
           child: ListTile(
             title: Text(
@@ -78,8 +82,11 @@ class SettingsCard extends StatelessWidget {
 
 class LogoutCard extends StatelessWidget {
 
+  final VoidCallback onPressedCallBack;
+
   const LogoutCard({
     super.key,
+    required this.onPressedCallBack
   });
 
   @override
@@ -87,7 +94,7 @@ class LogoutCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 6),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressedCallBack,
           style: ElevatedButton.styleFrom(backgroundColor: Constant.kGrayColor),
           child: ListTile(
             title: Text(

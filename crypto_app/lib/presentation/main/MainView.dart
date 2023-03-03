@@ -21,7 +21,7 @@ class _MainViewState extends State<MainView> {
   int _selectedIndex = 0;
 
 
-  static List<Widget> _widgets = <Widget>[
+  static final List<Widget> _widgets = <Widget>[
     AccountView(),
     //TradingView(activeHolding: Currency.fromAll(code: "BTC", name: "Bitcoin", color: "FFF6E22C", sortIndex: 100, exchangeRates : [100,200,300,400,300,200,500], amount: 5)),
     SettingsView(),
@@ -46,6 +46,7 @@ class _MainViewState extends State<MainView> {
         selectedItemColor: Constant.kPurpleColor,
         showSelectedLabels: false,
         showUnselectedLabels: false,
+
         //iconSize: ,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

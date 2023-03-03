@@ -302,10 +302,8 @@ class TradingView extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                "assets/icons/${activeHolding.code.toLowerCase()}.svg",
-                width: 30,
-              ),
+              Image.asset(
+                  "assets/images/${activeHolding.code.toLowerCase()}.png", width: 30,),
               Text(
                 " ${activeHolding.code} / USD",
                 style: const TextStyle(fontWeight: FontWeight.w700),

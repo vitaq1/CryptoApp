@@ -11,6 +11,9 @@ import 'package:skeletons/skeletons.dart';
 import 'bloc/account_bloc.dart';
 
 class AccountView extends StatelessWidget {
+
+  var accountBloc = AccountBloc();
+
   @override
   Widget build(context) {
     return Scaffold(
@@ -40,8 +43,9 @@ class AccountView extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AccountBloc(),
+    return BlocProvider.value(
+      //create: (context) => accountBloc,
+      value: accountBloc,
       child: Stack(children: [
         Column(
           children: [
@@ -266,4 +270,6 @@ class AccountView extends StatelessWidget {
     Hive.box<CurrencyEntity>("CurrencyTable").putAt(1, cur2);
     Hive.box<CurrencyEntity>("CurrencyTable").putAt(2, cur3);*/
   }
+
+
 }
