@@ -1,11 +1,8 @@
-import 'dart:developer';
-
-import 'package:crypto_app/data/datasource/local/entity/CurrencyEntity.dart';
-import 'package:hive/hive.dart';
+import 'package:crypto_app/data/datasource/local/entity/CurrencyEntity/CurrencyEntity.dart';
 
 import '../../data/datasource/local/HiveDB.dart';
-import '../../data/repository/ICryptoRepository.dart';
 import '../model/Currency.dart';
+import '../model/User.dart';
 
 class LocalRepository {
   LocalRepository({required this.db});
@@ -43,5 +40,13 @@ class LocalRepository {
       db.currencyTable.put(currency.key, currency.toCurrencyEntity());
     }
     return currency;
+  }
+
+  User getUser(){
+    return User.fromEntity(db.userTable.values.first);
+  }
+
+  updateUser(User user) async {
+   await db.userTable.putAt(0, user.toUserEntity());
   }
 }

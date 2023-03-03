@@ -28,7 +28,7 @@ class SettingsView extends StatelessWidget {
             )),
       ),
       body: ListView(children: [
-        SettingsCard(settingName: "Account", settingIcon: Icons.account_circle_rounded,onPressedCallBack: (){Get.to(const EditAccountView());}),
+        SettingsCard(settingName: "Account", settingIcon: Icons.account_circle_rounded,onPressedCallBack: (){Get.to(EditAccountView());}),
         SettingsCard(settingName: "Notifications", settingIcon: Icons.notifications,onPressedCallBack: (){}),
         SettingsCard(settingName: "Appearance", settingIcon: Icons.remove_red_eye_outlined,onPressedCallBack: (){}),
         SettingsCard(settingName: "Privacy & Security", settingIcon: Icons.lock_open_sharp,onPressedCallBack: (){}),

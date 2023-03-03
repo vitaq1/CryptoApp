@@ -1,4 +1,4 @@
-import 'package:crypto_app/data/datasource/local/entity/CurrencyEntity.dart';
+import 'package:crypto_app/data/datasource/local/entity/CurrencyEntity/CurrencyEntity.dart';
 import 'package:crypto_app/data/datasource/remote/dto/CurrencyDto.dart';
 
 class Currency {

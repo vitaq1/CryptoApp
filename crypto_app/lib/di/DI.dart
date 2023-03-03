@@ -7,12 +7,14 @@ import 'package:crypto_app/domain/repository/RemoteRepository.dart';
 import 'package:crypto_app/domain/use_case/BuyCurrency.dart';
 import 'package:crypto_app/domain/use_case/GetAllCurrencies.dart';
 import 'package:crypto_app/domain/use_case/GetExchangeRate.dart';
+import 'package:crypto_app/domain/use_case/GetUser.dart';
 import 'package:crypto_app/domain/use_case/SaveCurrenciesLocally.dart';
 import 'package:crypto_app/domain/use_case/SellCurrency.dart';
 import 'package:crypto_app/domain/use_case/UpdateExchangeRates.dart';
 import 'package:get/get.dart';
 
 import '../data/datasource/local/HiveDB.dart';
+import '../domain/use_case/UpdateUser.dart';
 
 
 class DI {
@@ -30,6 +32,8 @@ class DI {
     Get.put(UpdateExchangeRates(remoteRepository: Get.find(), localRepository: Get.find()));
     Get.put(BuyCurrency(localRepository: Get.find()));
     Get.put(SellCurrency(localRepository: Get.find()));
+    Get.put(GetUser(localRepository: Get.find()));
+    Get.put(UpdateUser(localRepository: Get.find()));
   }
 
 }
