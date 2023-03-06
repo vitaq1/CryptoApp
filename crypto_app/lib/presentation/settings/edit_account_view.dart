@@ -12,9 +12,9 @@ import '../Constant.dart';
 class EditAccountView extends StatelessWidget {
 
 
-  final nameController  = TextEditingController();
-  final lastNameController  = TextEditingController();
-  final locationController  = TextEditingController();
+  final nameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final locationController = TextEditingController();
 
   EditAccountView({Key? key}) : super(key: key);
 
@@ -80,8 +80,7 @@ class EditAccountView extends StatelessWidget {
   Widget buildBody(BuildContext context) {
     return BlocProvider(
       create: (context) => UserCubit(),
-      child: BlocConsumer<UserCubit, User>(
-        listener: (context, state) {},
+      child: BlocBuilder<UserCubit, User>(
         builder: (context, state) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6),
@@ -109,15 +108,18 @@ class EditAccountView extends StatelessWidget {
                                 onPressed: () {
                                   showDialog(
                                       context: context,
-                                      builder: (BuildContext context) {
-                                        return PickAvatarDialog();
+                                      builder: (BuildContext _) {
+                                        return BlocProvider<UserCubit>.value(
+                                          value: context.read<UserCubit>(),
+                                          child: PickAvatarDialog(),
+                                        );
                                       });
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.green,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    side: BorderSide(
+                                    shape: const CircleBorder(),
+                                    padding: const EdgeInsets.all(15),
+                                    side: const BorderSide(
                                         color: CupertinoColors
                                             .darkBackgroundGray,
                                         width: 5)),
@@ -161,7 +163,8 @@ class EditAccountView extends StatelessWidget {
                                 color: Constant.kLightGrayColor, fontSize: 12),
                           ),
                           subtitle: TextField(
-                            controller: lastNameController..text = state.lastName,
+                            controller: lastNameController
+                              ..text = state.lastName,
                             style:
                             const TextStyle(color: Colors.white, fontSize: 16),
                             decoration: const InputDecoration(
@@ -233,7 +236,9 @@ class EditAccountView extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            context.read<UserCubit>().updateData(nameController.text, lastNameController.text, locationController.text);
+                            context.read<UserCubit>().updateData(
+                                nameController.text, lastNameController.text,
+                                locationController.text);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green,
