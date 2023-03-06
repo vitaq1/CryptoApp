@@ -1,14 +1,9 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:crypto_app/domain/use_case/UpdateUser.dart';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 
 import '../../../domain/model/User.dart';
 import '../../../domain/use_case/GetUser.dart';
-
-part 'user_state.dart';
 
 class UserCubit extends Cubit<User> {
 

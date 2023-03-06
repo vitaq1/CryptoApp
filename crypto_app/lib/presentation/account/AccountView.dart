@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/presentation/Constant.dart';
@@ -8,16 +8,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletons/skeletons.dart';
 
+import '../../domain/model/User.dart';
+import '../settings/user_cubit/user_cubit.dart';
 import 'bloc/account_bloc.dart';
 
 class AccountView extends StatelessWidget {
-
   var accountBloc = AccountBloc();
 
   @override
   Widget build(context) {
     return Scaffold(
-        backgroundColor: Constant.kDarkColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: buildAppBar(),
         body: buildBody(context));
   }
@@ -28,9 +29,13 @@ class AccountView extends StatelessWidget {
       leadingWidth: 75,
       toolbarHeight: 90,
       elevation: 0,
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 24.0, top: 20, bottom: 20),
-        child: Image.asset("assets/images/man.png"),
+      leading: BlocBuilder<UserCubit, User>(
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 24.0, top: 20, bottom: 20),
+            child: CircleAvatar(backgroundImage: NetworkImage(state.avatarUrl)),
+          );
+        },
       ),
       title: Align(
           alignment: AlignmentDirectional.centerEnd,
@@ -60,14 +65,18 @@ class AccountView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Align(
+              Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Hello, Vitaly",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500),
+                  child: BlocBuilder<UserCubit, User>(
+                    builder: (context, state) {
+                      return Text(
+                        "Hello, ${state.name}",
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500),
+                      );
+                    },
                   )),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
@@ -112,16 +121,24 @@ class AccountView extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SkeletonLine(style: SkeletonLineStyle(
-                                      height: 26, maxLength: 120, minLength: 100, randomLength: true,
-                                      borderRadius: BorderRadius.circular(12)
-                                    ),),
-
-                                    SkeletonLine(style: SkeletonLineStyle(
-                                        height: 18, maxLength: 50, minLength: 40, randomLength: true,
-                                        borderRadius: BorderRadius.circular(12)
-                                    ),)
-
+                                    SkeletonLine(
+                                      style: SkeletonLineStyle(
+                                          height: 26,
+                                          maxLength: 120,
+                                          minLength: 100,
+                                          randomLength: true,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                    ),
+                                    SkeletonLine(
+                                      style: SkeletonLineStyle(
+                                          height: 18,
+                                          maxLength: 50,
+                                          minLength: 40,
+                                          randomLength: true,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                    )
                                   ],
                                 );
                               } else if (state is ShowDataState) {
@@ -196,7 +213,6 @@ class AccountView extends StatelessWidget {
                   // TODO: implement listener
                 },
                 builder: (context, state) {
-
                   if (state is AccountInitial) {
                     return Expanded(
                         child: ListView.separated(
@@ -230,7 +246,11 @@ class AccountView extends StatelessWidget {
                               );
                             }));
                   } else {
-                    return Container(width: 50,height: 50, color: Colors.red,);
+                    return Container(
+                      width: 50,
+                      height: 50,
+                      color: Colors.red,
+                    );
                   }
                 },
               )
@@ -270,6 +290,4 @@ class AccountView extends StatelessWidget {
     Hive.box<CurrencyEntity>("CurrencyTable").putAt(1, cur2);
     Hive.box<CurrencyEntity>("CurrencyTable").putAt(2, cur3);*/
   }
-
-
 }

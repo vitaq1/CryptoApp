@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:crypto_app/presentation/settings/bloc/user_cubit.dart';
+import 'package:crypto_app/presentation/settings/user_cubit/user_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +17,7 @@ class PickAvatarDialog extends StatelessWidget {
     return BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: AlertDialog(
-          contentPadding: EdgeInsets.all(0),
+          contentPadding: const EdgeInsets.all(0),
           backgroundColor: CupertinoColors.darkBackgroundGray,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -40,7 +40,7 @@ class PickAvatarDialog extends StatelessWidget {
                       child: TextField(
                         controller: urlController,
                         style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             hintText: "example: https://host/image.jpg",
                             hintStyle: TextStyle(
                                 fontSize: 12, color: Constant.kLightGrayColor),
@@ -65,7 +65,7 @@ class PickAvatarDialog extends StatelessWidget {
                             backgroundColor: Colors.green,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12))),
-                        child: SizedBox(
+                        child: const SizedBox(
                             width: 100,
                             child: Text(
                               "SAVE",

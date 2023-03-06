@@ -1,13 +1,15 @@
 import 'package:crypto_app/data/datasource/local/entity/CurrencyEntity/CurrencyEntity.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/datasource/local/HiveDB.dart';
 import '../model/Currency.dart';
 import '../model/User.dart';
 
 class LocalRepository {
-  LocalRepository({required this.db});
+  LocalRepository({required this.db, required this.prefs});
 
   final HiveDB db;
+  final SharedPreferences prefs;
 
   List<Currency> getCurrencies() {
     List<CurrencyEntity> currencies = db.currencyTable.values.toList().cast();
@@ -48,5 +50,13 @@ class LocalRepository {
 
   updateUser(User user) async {
    await db.userTable.putAt(0, user.toUserEntity());
+  }
+
+  bool isDarkTheme() {
+    return prefs.getBool("isDark")?? false;
+  }
+
+  setDarkTheme(bool isDark) async {
+    prefs.setBool("isDark", isDark);
   }
 }

@@ -129,13 +129,12 @@ class CurrencyCard extends StatelessWidget {
         ),
       );
     } else {
-      return BlocConsumer<AccountBloc, AccountState>(
-        listener: (context, state) {},
+      return BlocBuilder<AccountBloc, AccountState>(
         builder: (context, state) {
           return ElevatedButton(
             style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero,
-                backgroundColor: Constant.kCardColor,
+                backgroundColor: Constant.kGrayColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14))),
             onPressed: () async {
