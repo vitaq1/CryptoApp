@@ -2,7 +2,6 @@ import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/main/MainView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class SplashView extends StatelessWidget {
   @override
@@ -96,7 +95,7 @@ class SplashView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 50.0),
                     child: ElevatedButton(
 
-                      style: ElevatedButton.styleFrom(fixedSize: Size(double.maxFinite, 50),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.indigoAccent,fixedSize: Size(double.maxFinite, 50),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                       child: const Text(
                         "Get started",
                         style: TextStyle(fontSize: 16),
