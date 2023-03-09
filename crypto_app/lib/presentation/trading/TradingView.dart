@@ -252,6 +252,7 @@ class TradingView extends StatelessWidget {
                                       text: "1 ",
                                       style: TextStyle(
                                           fontSize: 20,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins")),
                                   TextSpan(
@@ -266,6 +267,7 @@ class TradingView extends StatelessWidget {
                                           " = ${activeHolding.exchangeRates.last.toStringAsFixed(2)} ",
                                       style: const TextStyle(
                                           fontSize: 20,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins")),
                                   const TextSpan(

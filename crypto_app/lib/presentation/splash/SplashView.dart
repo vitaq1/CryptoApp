@@ -24,6 +24,7 @@ class SplashView extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 64,
                               fontWeight: FontWeight.w700,
+                              color: Colors.white,
                               fontFamily: "Poppins")),
                       TextSpan(
                           text: "X",
