@@ -94,7 +94,6 @@ class SplashView extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50.0),
                     child: ElevatedButton(
-
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.indigoAccent,fixedSize: Size(double.maxFinite, 50),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                       child: const Text(
                         "Get started",

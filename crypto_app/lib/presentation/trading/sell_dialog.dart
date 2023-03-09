@@ -160,6 +160,7 @@ class SellDialog extends StatelessWidget {
                                   SizedBox(
                                     height: 44,
                                     child: TextField(
+                                      style: TextStyle(color: Colors.black26),
                                       keyboardType:
                                       const TextInputType.numberWithOptions(
                                           decimal: true),

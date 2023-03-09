@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/currency_card.dart';
@@ -13,7 +11,7 @@ import '../settings/user_cubit/user_cubit.dart';
 import 'bloc/account_bloc.dart';
 
 class AccountView extends StatelessWidget {
-  var accountBloc = AccountBloc();
+  final accountBloc = AccountBloc();
 
   @override
   Widget build(context) {

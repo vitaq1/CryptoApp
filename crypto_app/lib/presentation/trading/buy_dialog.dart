@@ -107,11 +107,12 @@ class BuyDialog extends StatelessWidget {
                                 ]),
                           ),
                         ),
-                        Expanded(flex: 1,child:
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: RichText(
-                              text: TextSpan(children: [
+                        Expanded(
+                            flex: 1,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: RichText(
+                                  text: TextSpan(children: [
                                 const TextSpan(
                                     text: "1 ",
                                     style: TextStyle(
@@ -127,7 +128,7 @@ class BuyDialog extends StatelessWidget {
                                         fontFamily: "Poppins")),
                                 TextSpan(
                                     text:
-                                    " = ${activeHolding!.exchangeRates.last.toStringAsFixed(2)} ",
+                                        " = ${activeHolding!.exchangeRates.last.toStringAsFixed(2)} ",
                                     style: const TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w700,
@@ -140,26 +141,30 @@ class BuyDialog extends StatelessWidget {
                                         fontWeight: FontWeight.w700,
                                         fontFamily: "Poppins")),
                               ])),
-                        )
-                        ),
-                        Expanded(flex: 1,child:
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text("You have: ${activeHolding.amount.toStringAsFixed(2)} ${activeHolding.code}", style: TextStyle(color: Constant.kLightGrayColor),)
-                        )
-                        ),
+                            )),
+                        Expanded(
+                            flex: 1,
+                            child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  "You have: ${activeHolding.amount.toStringAsFixed(2)} ${activeHolding.code}",
+                                  style: TextStyle(
+                                      color: Constant.kLightGrayColor),
+                                ))),
                         Expanded(
                           flex: 4,
                           child: Align(
                             alignment: Alignment.center,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+                              padding: const EdgeInsets.only(
+                                  left: 12, right: 12, bottom: 12),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   SizedBox(
                                     height: 44,
                                     child: TextField(
+                                      style: TextStyle(color: Colors.black26),
                                       keyboardType:
                                           const TextInputType.numberWithOptions(
                                               decimal: true),
@@ -176,8 +181,8 @@ class BuyDialog extends StatelessWidget {
                                                   style: BorderStyle.none)),
                                           contentPadding: EdgeInsets.all(5),
                                           filled: true,
-                                          hintStyle: TextStyle(
-                                              color: Colors.grey[300]),
+                                          hintStyle:
+                                              TextStyle(color: Colors.black26),
                                           hintText: "0.0 ${activeHolding.code}",
                                           fillColor: Colors.white),
                                     ),
@@ -189,7 +194,12 @@ class BuyDialog extends StatelessWidget {
                                       onPressed: () {
                                         var amount =
                                             double.tryParse(controller.text);
-                                        amount != null ? context.read<TradingBloc>().add(BuyCurrencyEvent(activeHolding, amount)) : printError(info: "incorrect data");
+                                        amount != null
+                                            ? context.read<TradingBloc>().add(
+                                                BuyCurrencyEvent(
+                                                    activeHolding, amount))
+                                            : printError(
+                                                info: "incorrect data");
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green,
