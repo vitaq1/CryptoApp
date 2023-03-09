@@ -96,7 +96,7 @@ class EditAccountView extends StatelessWidget {
                                       color: CupertinoColors
                                           .darkBackgroundGray,
                                       width: 5)),
-                              child: Icon(Icons.edit),
+                              child: const Icon(Icons.edit),
                             )),
                       ))),
               Expanded(
@@ -192,7 +192,13 @@ class EditAccountView extends StatelessWidget {
                     children: [
                       OutlinedButton(
                         onPressed: () {},
-                        child: SizedBox(
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          side: const BorderSide(color: Colors.white),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                        ),
+                        child: const SizedBox(
                             width: 100,
                             child: Text(
                               "CANCEL",
@@ -200,12 +206,6 @@ class EditAccountView extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white, fontSize: 16),
                             )),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          side: BorderSide(color: Colors.white),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                        ),
                       ),
                       ElevatedButton(
                         onPressed: () {

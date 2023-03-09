@@ -1,19 +1,14 @@
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/AccountView.dart';
 import 'package:crypto_app/presentation/settings/SettingsView.dart';
-import 'package:crypto_app/presentation/trading/TradingView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../data/datasource/local/HiveDB.dart';
-import '../../domain/model/Currency.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
 
   @override
   State<MainView> createState() => _MainViewState();
-
 
 }
 
@@ -23,7 +18,6 @@ class _MainViewState extends State<MainView> {
 
   static final List<Widget> _widgets = <Widget>[
     AccountView(),
-    //TradingView(activeHolding: Currency.fromAll(code: "BTC", name: "Bitcoin", color: "FFF6E22C", sortIndex: 100, exchangeRates : [100,200,300,400,300,200,500], amount: 5)),
     SettingsView(),
   ];
 

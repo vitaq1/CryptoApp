@@ -39,7 +39,7 @@ class PickAvatarDialog extends StatelessWidget {
                       flex: 2,
                       child: TextField(
                         controller: urlController,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                         decoration: const InputDecoration(
                             hintText: "example: https://host/image.jpg",
                             hintStyle: TextStyle(

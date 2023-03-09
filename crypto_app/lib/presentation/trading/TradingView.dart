@@ -230,7 +230,7 @@ class TradingView extends StatelessWidget {
                       ),
                       Expanded(
                         flex: 1,
-                        child: Container(
+                        child: SizedBox(
                           width: double.maxFinite,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
@@ -256,7 +256,7 @@ class TradingView extends StatelessWidget {
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins")),
                                   TextSpan(
-                                      text: "${activeHolding.code}",
+                                      text: activeHolding.code,
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: HexColor(activeHolding.color),

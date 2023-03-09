@@ -13,6 +13,8 @@ import 'bloc/account_bloc.dart';
 class AccountView extends StatelessWidget {
   final accountBloc = AccountBloc();
 
+  AccountView({super.key});
+
   @override
   Widget build(context) {
     return Scaffold(
@@ -207,9 +209,7 @@ class AccountView extends StatelessWidget {
                 ),
               ),
               BlocConsumer<AccountBloc, AccountState>(
-                listener: (context, state) {
-                  // TODO: implement listener
-                },
+                listener: (context, state) {},
                 builder: (context, state) {
                   if (state is AccountInitial) {
                     return Expanded(
@@ -275,17 +275,5 @@ class AccountView extends StatelessWidget {
       onEnd += element.amount * element.exchangeRates.last;
     });
     return double.parse((((onEnd / onStart) - 1.0) * 100.0).toStringAsFixed(2));
-  }
-
-  loadData() async {
-    /*var cur1 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(0);
-    var cur2 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(1);
-    var cur3 = Hive.box<CurrencyEntity>("CurrencyTable").getAt(2);
-    cur1!.amount = cur1.amount + 0.25;
-    cur2!.amount = cur2.amount + 0.25;
-    cur3!.amount = cur3.amount + 0.25;
-    Hive.box<CurrencyEntity>("CurrencyTable").putAt(0, cur1);
-    Hive.box<CurrencyEntity>("CurrencyTable").putAt(1, cur2);
-    Hive.box<CurrencyEntity>("CurrencyTable").putAt(2, cur3);*/
   }
 }

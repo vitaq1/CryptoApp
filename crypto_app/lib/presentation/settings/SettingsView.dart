@@ -90,7 +90,7 @@ class SettingsCard extends StatelessWidget {
           child: ListTile(
             title: Text(
               settingName,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
             leading: Icon(
               settingIcon,
@@ -98,7 +98,7 @@ class SettingsCard extends StatelessWidget {
             ),
             trailing: IconButton(
               color: Colors.white,
-              icon: Icon(Icons.arrow_forward_ios_rounded),
+              icon: const Icon(Icons.arrow_forward_ios_rounded),
               onPressed: () {},
             ),
           )),
@@ -160,7 +160,7 @@ class LogoutCard extends StatelessWidget {
       child: ElevatedButton(
           onPressed: onPressedCallBack,
           style: ElevatedButton.styleFrom(backgroundColor: Constant.kGrayColor),
-          child: ListTile(
+          child: const ListTile(
             title: Text(
               "Logout",
               style: TextStyle(color: Colors.redAccent),

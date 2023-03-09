@@ -22,7 +22,7 @@ class SellDialog extends StatelessWidget {
     return BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: AlertDialog(
-          contentPadding: EdgeInsets.all(0),
+          contentPadding: const EdgeInsets.all(0),
           backgroundColor: Constant.kGrayColor,
           shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -120,15 +120,15 @@ class SellDialog extends StatelessWidget {
                                         fontWeight: FontWeight.w700,
                                         fontFamily: "Poppins")),
                                 TextSpan(
-                                    text: "${activeHolding!.code}",
+                                    text: activeHolding.code,
                                     style: TextStyle(
                                         fontSize: 20,
-                                        color: HexColor(activeHolding!.color),
+                                        color: HexColor(activeHolding.color),
                                         fontWeight: FontWeight.w700,
                                         fontFamily: "Poppins")),
                                 TextSpan(
                                     text:
-                                    " = ${activeHolding!.exchangeRates.last.toStringAsFixed(2)} ",
+                                    " = ${activeHolding.exchangeRates.last.toStringAsFixed(2)} ",
                                     style: const TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,
@@ -147,7 +147,7 @@ class SellDialog extends StatelessWidget {
                         Expanded(flex: 1,child:
                         Align(
                             alignment: Alignment.bottomCenter,
-                            child: Text("You have: ${activeHolding.amount.toStringAsFixed(2)} ${activeHolding.code}", style: TextStyle(color: Constant.kLightGrayColor),)
+                            child: Text("You have: ${activeHolding.amount.toStringAsFixed(2)} ${activeHolding.code}", style: const TextStyle(color: Constant.kLightGrayColor),)
                         )
                         ),
                         Expanded(
@@ -162,7 +162,7 @@ class SellDialog extends StatelessWidget {
                                   SizedBox(
                                     height: 44,
                                     child: TextField(
-                                      style: TextStyle(color: Colors.black26),
+                                      style: const TextStyle(color: Colors.black26),
                                       keyboardType:
                                       const TextInputType.numberWithOptions(
                                           decimal: true),
@@ -177,7 +177,7 @@ class SellDialog extends StatelessWidget {
                                               borderSide: const BorderSide(
                                                   width: 0,
                                                   style: BorderStyle.none)),
-                                          contentPadding: EdgeInsets.all(5),
+                                          contentPadding: const EdgeInsets.all(5),
                                           filled: true,
                                           hintStyle: TextStyle(
                                               color: Colors.grey[300]),
