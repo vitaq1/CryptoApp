@@ -40,7 +40,6 @@ class DI {
     Get.put(UpdateUser(localRepository: Get.find()));
     Get.put(GetTheme(localRepository: Get.find()));
     Get.put(SetTheme(localRepository: Get.find()));
-
   }
 
 }

@@ -21,5 +21,4 @@ class ExchangeRate {
     this.date = DateTime.parse(date);
   }
 
-
 }

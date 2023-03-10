@@ -4,6 +4,7 @@ import 'package:crypto_app/presentation/settings/appearance_cubit/appearance_cub
 import 'package:crypto_app/presentation/settings/edit_account_view.dart';
 import 'package:crypto_app/presentation/settings/user_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -63,7 +64,7 @@ class SettingsView extends StatelessWidget {
             settingName: "About",
             settingIcon: Icons.question_mark,
             onPressedCallBack: () {}),
-        LogoutCard(onPressedCallBack: () {})
+        LogoutCard(onPressedCallBack: () { SystemNavigator.pop(animated: true);})
       ]),
     );
   }

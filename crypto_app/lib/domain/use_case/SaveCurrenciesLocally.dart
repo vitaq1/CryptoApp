@@ -14,4 +14,5 @@ class SaveCurrenciesLocally {
      await localRepository.addCurrencies(currencies);
   }
 
+
 }
