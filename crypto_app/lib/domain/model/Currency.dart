@@ -1,7 +1,8 @@
 import 'package:crypto_app/data/datasource/local/entity/CurrencyEntity/CurrencyEntity.dart';
 import 'package:crypto_app/data/datasource/remote/dto/CurrencyDto.dart';
+import 'package:equatable/equatable.dart';
 
-class Currency {
+class Currency extends Equatable{
   Currency({
     required this.code,
     required this.name,
@@ -53,4 +54,7 @@ class Currency {
       ..exchangeRates = exchangeRates
       ..amount = amount;
   }
+
+  @override
+  List<Object?> get props => [code, name, color, sortIndex];
 }

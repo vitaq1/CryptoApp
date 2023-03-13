@@ -1,6 +1,7 @@
 import 'package:crypto_app/data/datasource/remote/dto/ExchangeRateDto.dart';
+import 'package:equatable/equatable.dart';
 
-class ExchangeRate {
+class ExchangeRate extends Equatable{
   ExchangeRate({
     required this.base,
     required this.currency,
@@ -20,5 +21,8 @@ class ExchangeRate {
     amount =  exchangeRateDto.amount;
     this.date = DateTime.parse(date);
   }
+
+  @override
+  List<Object?> get props => [base, currency, amount];
 
 }

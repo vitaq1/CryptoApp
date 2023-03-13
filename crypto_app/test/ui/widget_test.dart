@@ -6,6 +6,6 @@ import 'package:crypto_app/presentation/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    
+    expect(true, true);
   });
 }
