@@ -30,7 +30,7 @@ void main() {
     var matcher = await Future.value(
         [Currency(code: "CUR1", name: "CUR1", color: "#aaaaaa", sortIndex: 1)]);
 
-    expect(actual, matcher);
+    expectLater(actual, matcher);
   });
 
   test('Проверка fetchExchangeRate()', () async {
@@ -55,4 +55,6 @@ void main() {
 
     expect(actual, matcher);
   });
+
+
 }
