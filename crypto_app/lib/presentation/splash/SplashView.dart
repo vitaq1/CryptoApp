@@ -123,10 +123,11 @@ class SplashView extends StatelessWidget {
                               localizedReason: 'Please authenticate',
                               options: const AuthenticationOptions(useErrorDialogs: false));
                           if (didAuthenticate) {
-                            Get.to(AccountView());
+                            Get.to(MainView());
                           }
                         } on PlatformException catch (e) {
                           log(e.message!);
+                          Get.to(MainView());
                         }
 
                       },
