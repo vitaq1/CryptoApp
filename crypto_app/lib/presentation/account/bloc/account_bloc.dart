@@ -24,8 +24,17 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
 
 
     on<LoadDataEvent>((event, emit) async {
-
       //await updateExchangeRates.call();
+      holdings = await updateExchangeRates.call();
+      if (holdings.isEmpty) {
+        await saveCurrenciesLocally.call();
+        holdings = await updateExchangeRates.call();
+      }
+      emit(ShowDataState(holdings));
+    });
+
+    on<UpdateDataEvent>((event, emit) async {
+      emit(AccountInitial());
       holdings = await updateExchangeRates.call();
       if (holdings.isEmpty) {
         await saveCurrenciesLocally.call();
@@ -36,7 +45,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
 
     on<UpdateCurrencyEvent>((event, emit) async {
       holdings = holdings.map((e) => e.code == event.currency.code? event.currency : e).toList();
-      log("123");
       emit(CurrencyUpdatedState(holdings));
     });
 
@@ -44,7 +52,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
 
 
   }
-
 
 
   loadData(){

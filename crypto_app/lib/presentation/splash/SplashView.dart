@@ -1,9 +1,19 @@
+import 'dart:developer';
+
 import 'package:crypto_app/presentation/Constant.dart';
+import 'package:crypto_app/presentation/account/AccountView.dart';
 import 'package:crypto_app/presentation/main/MainView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/services.dart';
+import 'dart:io';
+import 'package:local_auth/local_auth.dart';
 
 class SplashView extends StatelessWidget {
+  String msg = "You are not authorized.";
+  final LocalAuthentication auth = LocalAuthentication();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,13 +105,30 @@ class SplashView extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50.0),
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.indigoAccent,fixedSize: const Size(double.maxFinite, 50),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.indigoAccent,
+                          fixedSize: const Size(double.maxFinite, 50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
                       child: const Text(
                         "Get started",
                         style: TextStyle(fontSize: 16),
                       ),
-                      onPressed: () {
-                        Get.to(const MainView());
+                      onPressed: () async {
+                        final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
+                        final bool canAuthenticate = canAuthenticateWithBiometrics || await auth.isDeviceSupported();
+
+                        try {
+                          final bool didAuthenticate = await auth.authenticate(
+                              localizedReason: 'Please authenticate',
+                              options: const AuthenticationOptions(useErrorDialogs: false));
+                          if (didAuthenticate) {
+                            Get.to(AccountView());
+                          }
+                        } on PlatformException catch (e) {
+                          log(e.message!);
+                        }
+
                       },
                     ),
                   ),

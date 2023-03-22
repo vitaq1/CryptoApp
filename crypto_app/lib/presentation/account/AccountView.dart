@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:crypto_app/domain/model/Currency.dart';
 import 'package:crypto_app/presentation/Constant.dart';
 import 'package:crypto_app/presentation/account/currency_card.dart';
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -229,20 +232,25 @@ class AccountView extends StatelessWidget {
                             }));
                   } else if (state is ShowDataState) {
                     return Expanded(
-                        child: ListView.separated(
-                            shrinkWrap: false,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: state.holdings.length,
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return const SizedBox(height: 15);
-                            },
-                            itemBuilder: (BuildContext context, int index) {
-                              return CurrencyCard(
-                                activeHolding: state.holdings[index],
-                                isLoading: false,
-                              );
-                            }));
+                        child: RefreshIndicator(
+                      onRefresh: () {
+                        context.read<AccountBloc>().add(UpdateDataEvent());
+                        return Future.delayed(Duration(seconds: 2));
+                      },
+                      child: ListView.separated(
+                          shrinkWrap: false,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: state.holdings.length,
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(height: 15);
+                          },
+                          itemBuilder: (BuildContext context, int index) {
+                            return CurrencyCard(
+                              activeHolding: state.holdings[index],
+                              isLoading: false,
+                            );
+                          }),
+                    ));
                   } else {
                     return Container(
                       width: 50,
