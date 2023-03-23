@@ -6,8 +6,6 @@ import 'package:crypto_app/presentation/trading/sell_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../domain/model/Currency.dart';
@@ -15,9 +13,6 @@ import 'bloc/trading_bloc.dart';
 
 class TradingView extends StatelessWidget {
   Currency activeHolding;
-
-  //Currency? activeHolding = Currency(code: "BTC", name: "Bitcoin", color: Colors.amber.toString(), sortIndex: 100,)..exchangeRates = [100,200,300,400,300,200,500]..amount = 5;
-
   TradingView({
     Key? key,
     required this.activeHolding,
@@ -39,7 +34,7 @@ class TradingView extends StatelessWidget {
               listener: (context, state) {},
               builder: (context, state) {
                 return Container(
-                  color: CupertinoColors.darkBackgroundGray,
+                  color: Theme.of(context).colorScheme.background,
                   child: Column(
                     children: [
                       Expanded(
@@ -75,9 +70,9 @@ class TradingView extends StatelessWidget {
                                   children: [
                                     Text(
                                       "${calculateBalance(activeHolding)} USD",
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           fontSize: 24,
-                                          color: Colors.white,
+                                          color: Theme.of(context).textTheme.headlineLarge!.color,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
@@ -239,20 +234,20 @@ class TradingView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
+                                Text(
                                   "Exchange rate",
                                   style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.w700,
-                                      color: Colors.white),
+                                      color: Theme.of(context).textTheme.headlineLarge!.color),
                                 ),
                                 RichText(
                                     text: TextSpan(children: [
-                                  const TextSpan(
+                                      TextSpan(
                                       text: "1 ",
                                       style: TextStyle(
                                           fontSize: 20,
-                                          color: Colors.white,
+                                          color: Theme.of(context).textTheme.headlineLarge!.color,
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins")),
                                   TextSpan(
@@ -265,9 +260,9 @@ class TradingView extends StatelessWidget {
                                   TextSpan(
                                       text:
                                           " = ${activeHolding.exchangeRates.last.toStringAsFixed(2)} ",
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           fontSize: 20,
-                                          color: Colors.white,
+                                          color: Theme.of(context).textTheme.headlineLarge!.color,
                                           fontWeight: FontWeight.w700,
                                           fontFamily: "Poppins")),
                                   const TextSpan(
@@ -296,7 +291,7 @@ class TradingView extends StatelessWidget {
     return AppBar(
       leadingWidth: 75,
       toolbarHeight: 75,
-      backgroundColor: CupertinoColors.darkBackgroundGray,
+      backgroundColor: Theme.of(context).colorScheme.background,
       elevation: 0,
       title: SizedBox(
           width: 200,
@@ -308,7 +303,8 @@ class TradingView extends StatelessWidget {
                   "assets/images/${activeHolding.code.toLowerCase()}.png", width: 30,),
               Text(
                 " ${activeHolding.code} / USD",
-                style: const TextStyle(fontWeight: FontWeight.w700),
+                style: TextStyle(fontWeight: FontWeight.w700,
+                color: Theme.of(context).textTheme.headlineLarge!.color),
               )
             ],
           )),
@@ -321,12 +317,12 @@ class TradingView extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Constant.kGrayColor,
+                  backgroundColor: Theme.of(context).colorScheme.background,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12))),
-              child: const Icon(
+              child: Icon(
                 Icons.add_chart_outlined,
-                color: Colors.white54,
+                color: Theme.of(context).textTheme.headlineLarge!.color,
                 size: 24,
               ),
             ),
@@ -342,12 +338,12 @@ class TradingView extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
               alignment: Alignment.center,
-              backgroundColor: Constant.kGrayColor,
+              backgroundColor: Theme.of(context).colorScheme.background,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12))),
-          child: const Icon(
+          child: Icon(
             Icons.arrow_back,
-            color: Colors.white54,
+            color: Theme.of(context).textTheme.headlineLarge!.color,
           ),
         ),
       ),

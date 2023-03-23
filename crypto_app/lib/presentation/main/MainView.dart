@@ -36,20 +36,21 @@ class _MainViewState extends State<MainView> {
         child: _widgets.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Constant.kNavColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         selectedItemColor: Constant.kPurpleColor,
+        unselectedItemColor: Theme.of(context).textTheme.headlineLarge!.color,
         showSelectedLabels: false,
         showUnselectedLabels: false,
 
         //iconSize: ,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/account.svg"),
+            icon: SvgPicture.asset("assets/icons/account.svg", color: Theme.of(context).textTheme.headlineLarge!.color,),
             activeIcon: SvgPicture.asset("assets/icons/account.svg",color: Constant.kPurpleColor,),
             label: ""
           ),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/icons/settings.svg"),
+              icon: SvgPicture.asset("assets/icons/settings.svg",color: Theme.of(context).textTheme.headlineLarge!.color,),
               activeIcon: SvgPicture.asset("assets/icons/settings.svg",color: Constant.kPurpleColor,),
               label: ""
           ),

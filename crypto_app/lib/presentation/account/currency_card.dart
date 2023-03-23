@@ -25,7 +25,7 @@ class CurrencyCard extends StatelessWidget {
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
             padding: EdgeInsets.zero,
-            backgroundColor: Constant.kGrayColor,
+            backgroundColor: Theme.of(context).buttonTheme.colorScheme!.background,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14))),
         onPressed: () {},
@@ -134,7 +134,7 @@ class CurrencyCard extends StatelessWidget {
           return ElevatedButton(
             style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero,
-                backgroundColor: Constant.kGrayColor,
+                backgroundColor: Theme.of(context).buttonTheme.colorScheme!.background,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14))),
             onPressed: () async {

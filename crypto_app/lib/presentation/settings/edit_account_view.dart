@@ -21,7 +21,7 @@ class EditAccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CupertinoColors.darkBackgroundGray,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: buildAppBar(context),
       body: buildBody(context),
     );
@@ -31,7 +31,7 @@ class EditAccountView extends StatelessWidget {
     return AppBar(
       leadingWidth: 75,
       toolbarHeight: 75,
-      backgroundColor: CupertinoColors.darkBackgroundGray,
+      backgroundColor: Theme.of(context).colorScheme.background,
       elevation: 0,
 
       leading: Padding(
@@ -43,12 +43,12 @@ class EditAccountView extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
               alignment: Alignment.center,
-              backgroundColor: Constant.kGrayColor,
+              backgroundColor: Theme.of(context).colorScheme.background,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12))),
-          child: const Icon(
+          child: Icon(
             Icons.arrow_back,
-            color: Colors.white54,
+            color: Theme.of(context).textTheme.headlineLarge!.color,
           ),
         ),
       ),
@@ -62,13 +62,13 @@ class EditAccountView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6),
           child: Column(
             children: [
-              const Expanded(
+              Expanded(
                   flex: 1,
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Edit profile",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        style: TextStyle(color: Theme.of(context).textTheme.headlineLarge!.color, fontSize: 20),
                       ))),
               Expanded(
                   flex: 4,
@@ -92,9 +92,8 @@ class EditAccountView extends StatelessWidget {
                                   backgroundColor: Colors.green,
                                   shape: const CircleBorder(),
                                   padding: const EdgeInsets.all(15),
-                                  side: const BorderSide(
-                                      color: CupertinoColors
-                                          .darkBackgroundGray,
+                                  side: BorderSide(
+                                      color: Theme.of(context).colorScheme.background,
                                       width: 5)),
                               child: const Icon(Icons.edit),
                             )),
@@ -112,7 +111,7 @@ class EditAccountView extends StatelessWidget {
                         subtitle: TextField(
                           controller: nameController..text = state.name,
                           style:
-                          const TextStyle(color: Colors.white, fontSize: 16),
+                          TextStyle(color: Theme.of(context).textTheme.headlineLarge!.color, fontSize: 16),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide:
@@ -139,7 +138,7 @@ class EditAccountView extends StatelessWidget {
                           controller: lastNameController
                             ..text = state.lastName,
                           style:
-                          const TextStyle(color: Colors.white, fontSize: 16),
+                          TextStyle(color: Theme.of(context).textTheme.headlineLarge!.color, fontSize: 16),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide:
@@ -166,7 +165,7 @@ class EditAccountView extends StatelessWidget {
                           controller:
                           locationController..text = state.location,
                           style:
-                          const TextStyle(color: Colors.white, fontSize: 16),
+                          TextStyle(color: Theme.of(context).textTheme.headlineLarge!.color, fontSize: 16),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide:
@@ -194,17 +193,17 @@ class EditAccountView extends StatelessWidget {
                         onPressed: () {},
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.white,
-                          side: const BorderSide(color: Colors.white),
+                          side: BorderSide(color: Theme.of(context).textTheme.headlineLarge!.color!),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12)),
                         ),
-                        child: const SizedBox(
+                        child: SizedBox(
                             width: 100,
                             child: Text(
                               "CANCEL",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 16),
+                                  color: Theme.of(context).textTheme.headlineLarge!.color, fontSize: 16),
                             )),
                       ),
                       ElevatedButton(

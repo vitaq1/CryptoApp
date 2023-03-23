@@ -17,7 +17,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constant.kDarkColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leadingWidth: 75,
@@ -37,6 +37,7 @@ class SettingsView extends StatelessWidget {
             child: IconButton(
               iconSize: 35,
               onPressed: () {},
+              color: Theme.of(context).textTheme.headlineLarge!.color,
               icon: const Icon(Icons.settings),
             )),
       ),
@@ -87,7 +88,7 @@ class SettingsCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 6),
       child: ElevatedButton(
           onPressed: onPressedCallBack,
-          style: ElevatedButton.styleFrom(backgroundColor: Constant.kGrayColor),
+          style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).buttonTheme.colorScheme!.background),
           child: ListTile(
             title: Text(
               settingName,
@@ -123,7 +124,7 @@ class AppearanceCard extends StatelessWidget {
         child: ElevatedButton(
             onPressed: onPressedCallBack,
             style:
-                ElevatedButton.styleFrom(backgroundColor: Constant.kGrayColor),
+                ElevatedButton.styleFrom(backgroundColor: Theme.of(context).buttonTheme.colorScheme!.background),
             child: ListTile(
               title: const Text(
                 "Dark mode",
@@ -160,7 +161,7 @@ class LogoutCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 6),
       child: ElevatedButton(
           onPressed: onPressedCallBack,
-          style: ElevatedButton.styleFrom(backgroundColor: Constant.kGrayColor),
+          style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).buttonTheme.colorScheme!.background),
           child: const ListTile(
             title: Text(
               "Logout",

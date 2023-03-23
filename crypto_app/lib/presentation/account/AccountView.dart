@@ -22,11 +22,11 @@ class AccountView extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: buildAppBar(),
+        appBar: buildAppBar(context),
         body: buildBody(context));
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
       leadingWidth: 75,
@@ -44,6 +44,7 @@ class AccountView extends StatelessWidget {
           alignment: AlignmentDirectional.centerEnd,
           child: IconButton(
             iconSize: 35,
+            color: Theme.of(context).textTheme.headlineLarge!.color,
             onPressed: () {},
             icon: const Icon(Icons.settings),
           )),
@@ -74,8 +75,8 @@ class AccountView extends StatelessWidget {
                     builder: (context, state) {
                       return Text(
                         "Hello, ${state.name}",
-                        style: const TextStyle(
-                            color: Colors.white,
+                        style: TextStyle(
+                            color: Theme.of(context).textTheme.headlineLarge!.color,
                             fontSize: 24,
                             fontWeight: FontWeight.w500),
                       );
@@ -192,21 +193,21 @@ class AccountView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Holdings",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
-                          color: Colors.white),
+                          color: Theme.of(context).textTheme.headlineLarge!.color),
                     ),
                     TextButton(
                         onPressed: () {},
-                        child: const Text(
+                        child: Text(
                           "See all",
                           style: TextStyle(
                               fontSize: 14,
                               decoration: TextDecoration.underline,
-                              color: Colors.white),
+                              color: Theme.of(context).textTheme.headlineLarge!.color),
                         ))
                   ],
                 ),

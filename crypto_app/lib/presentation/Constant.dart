@@ -1,8 +1,7 @@
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Constant {
-
   static const kPurpleColor = Color(0XFF6552FE);
   static const kDarkColor = Color(0XFF070707);
   static const kGrayColor = Color(0XFF1F1F1F);
@@ -27,9 +26,23 @@ class Constant {
     tileMode: TileMode.clamp,
   );
 
+  static var lightTheme = ThemeData(
+      fontFamily: "Poppins",
+      colorScheme: const ColorScheme.light()
+          .copyWith(background: CupertinoColors.extraLightBackgroundGray),
+      textTheme: TextTheme(headlineLarge: TextStyle(color: Colors.black87)),
+      buttonTheme: ButtonThemeData(
+          colorScheme: ColorScheme.light().copyWith(background: Colors.black54)));
+
+  static var darkTheme = ThemeData(
+      fontFamily: "Poppins",
+      colorScheme: const ColorScheme.dark()
+          .copyWith(background: CupertinoColors.darkBackgroundGray),
+      textTheme: TextTheme(headlineLarge: TextStyle(color: Colors.white)),
+      buttonTheme: ButtonThemeData(
+          colorScheme: ColorScheme.dark().copyWith(background: kGrayColor)));
+
 }
-
-
 
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {

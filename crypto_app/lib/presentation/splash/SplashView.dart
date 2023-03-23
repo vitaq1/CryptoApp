@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:crypto_app/presentation/Constant.dart';
-import 'package:crypto_app/presentation/account/AccountView.dart';
 import 'package:crypto_app/presentation/main/MainView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
-import 'dart:io';
 import 'package:local_auth/local_auth.dart';
 
 class SplashView extends StatelessWidget {
@@ -18,7 +16,7 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Constant.kDarkColor,
+        color: Theme.of(context).colorScheme.background,
         child: Column(
           children: [
             Expanded(
@@ -28,15 +26,15 @@ class SplashView extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: RichText(
-                    text: const TextSpan(children: [
+                    text: TextSpan(children: [
                       TextSpan(
                           text: "Crypt",
                           style: TextStyle(
                               fontSize: 64,
                               fontWeight: FontWeight.w700,
-                              color: Colors.white,
+                              color: Theme.of(context).textTheme.headlineLarge!.color,
                               fontFamily: "Poppins")),
-                      TextSpan(
+                      const TextSpan(
                           text: "X",
                           style: TextStyle(
                               fontSize: 64,
@@ -62,7 +60,7 @@ class SplashView extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Column(
-                children: const [
+                children: [
                   Expanded(
                     flex: 2,
                     child: Padding(
@@ -70,7 +68,7 @@ class SplashView extends StatelessWidget {
                       child: Text(
                         "Jump start your crypto portfolio",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Theme.of(context).textTheme.headlineLarge!.color,
                             fontWeight: FontWeight.w700,
                             fontSize: 32),
                       ),
@@ -85,7 +83,7 @@ class SplashView extends StatelessWidget {
                           child: Text(
                             "Take your investment portfolio to next level",
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).textTheme.headlineLarge!.color,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14),
                           )),
@@ -112,7 +110,7 @@ class SplashView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15))),
                       child: const Text(
                         "Get started",
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                       onPressed: () async {
                         final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
@@ -123,11 +121,11 @@ class SplashView extends StatelessWidget {
                               localizedReason: 'Please authenticate',
                               options: const AuthenticationOptions(useErrorDialogs: false));
                           if (didAuthenticate) {
-                            Get.to(MainView());
+                            Get.to(const MainView());
                           }
                         } on PlatformException catch (e) {
                           log(e.message!);
-                          Get.to(MainView());
+                          Get.to(const MainView());
                         }
 
                       },

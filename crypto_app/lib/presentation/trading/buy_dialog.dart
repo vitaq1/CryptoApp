@@ -21,7 +21,7 @@ class BuyDialog extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: AlertDialog(
           contentPadding: const EdgeInsets.all(0),
-          backgroundColor: Constant.kGrayColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           content: BlocProvider(
@@ -81,8 +81,8 @@ class BuyDialog extends StatelessWidget {
                                                 overflow: TextOverflow.visible,
                                                 softWrap: true,
                                                 maxLines: 3,
-                                                style: const TextStyle(
-                                                    color: Colors.white,
+                                                style: TextStyle(
+                                                    color: Theme.of(context).textTheme.headlineLarge!.color,
                                                     fontSize: 15,
                                                     height: 1,
                                                     fontWeight:
@@ -111,11 +111,11 @@ class BuyDialog extends StatelessWidget {
                               alignment: Alignment.bottomCenter,
                               child: RichText(
                                   text: TextSpan(children: [
-                                const TextSpan(
+                                    TextSpan(
                                     text: "1 ",
                                     style: TextStyle(
                                         fontSize: 20,
-                                        color: Colors.white,
+                                        color: Theme.of(context).textTheme.headlineLarge!.color,
                                         fontWeight: FontWeight.w700,
                                         fontFamily: "Poppins")),
                                 TextSpan(
@@ -128,9 +128,9 @@ class BuyDialog extends StatelessWidget {
                                 TextSpan(
                                     text:
                                         " = ${activeHolding.exchangeRates.last.toStringAsFixed(2)} ",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontSize: 20,
-                                        color: Colors.white,
+                                        color: Theme.of(context).textTheme.headlineLarge!.color,
                                         fontWeight: FontWeight.w700,
                                         fontFamily: "Poppins")),
                                 const TextSpan(

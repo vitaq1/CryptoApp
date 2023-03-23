@@ -18,7 +18,7 @@ class PickAvatarDialog extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: AlertDialog(
           contentPadding: const EdgeInsets.all(0),
-          backgroundColor: CupertinoColors.darkBackgroundGray,
+          backgroundColor: Theme.of(context).colorScheme.background,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           content: SizedBox(
@@ -29,11 +29,11 @@ class PickAvatarDialog extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   children: [
-                    const Expanded(
+                    Expanded(
                         flex: 1,
                         child: Text(
                           "Paste Image URL",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: TextStyle(color: Theme.of(context).textTheme.headlineLarge!.color, fontSize: 18),
                         )),
                     Expanded(
                       flex: 2,
